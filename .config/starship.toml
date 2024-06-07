@@ -1,0 +1,248 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = true
+format = """$all$fill$status$time$line_break$sudo$character"""
+right_format = """$custom"""
+
+[character]
+success_symbol = '\$'
+error_symbol = '\$'
+
+[git_commit]
+tag_symbol = " tag "
+
+[git_status]
+ahead = ">"
+behind = "<"
+diverged = "<>"
+renamed = "r"
+deleted = "x"
+
+[aws]
+symbol = "aws "
+disabled = true
+
+[bun]
+symbol = "bun "
+disabled = true
+
+[c]
+symbol = "C "
+
+[cobol]
+symbol = "cobol "
+disabled = true
+
+[conda]
+symbol = "conda "
+disabled = true
+
+[crystal]
+symbol = "cr "
+disabled = true
+
+[cmake]
+symbol = "cmake "
+
+[custom.toolbox]
+when = """ test -f /run/.containerenv && test -f /run/.toolboxenv """
+description = "Config for toolbox"
+style = "red"
+command = """ cat /run/.containerenv | sed -n '2 p' | awk -F '"' 'NF>2{print $2}' """
+format = '[ toolbox:$output]($style)'
+
+[daml]
+symbol = "daml "
+disabled = true
+
+[dart]
+symbol = "dart "
+disabled = true
+
+[deno]
+symbol = "deno "
+disabled = true
+
+[dotnet]
+symbol = ".NET "
+disabled = true
+
+[directory]
+read_only = " ro"
+
+[docker_context]
+symbol = "docker "
+
+[elixir]
+symbol = "exs "
+disabled = true
+
+[elm]
+symbol = "elm "
+
+[fill]
+symbol = ' '
+
+[git_branch]
+symbol = "git "
+
+[golang]
+symbol = "go "
+
+[guix_shell]
+symbol = "guix "
+
+[hg_branch]
+symbol = "hg "
+
+[java]
+symbol = "java "
+
+[julia]
+symbol = "jl "
+disabled = true
+
+[kotlin]
+symbol = "kt "
+disabled = true
+
+[lua]
+symbol = "lua "
+disabled = true
+
+[nodejs]
+symbol = "nodejs "
+
+[memory_usage]
+symbol = "memory "
+
+[meson]
+symbol = "meson "
+
+[nim]
+symbol = "nim "
+disabled = true
+
+[nix_shell]
+symbol = "nix "
+
+[ocaml]
+symbol = "ml "
+disabled = true
+
+[opa]
+symbol = "opa "
+disabled = true
+
+[os.symbols]
+Alpine = "alp "
+Amazon = "amz "
+Android = "andr "
+Arch = "rch "
+CentOS = "cent "
+Debian = "deb "
+DragonFly = "dfbsd "
+Emscripten = "emsc "
+EndeavourOS = "ndev "
+Fedora = "fed "
+FreeBSD = "fbsd "
+Garuda = "garu "
+Gentoo = "gent "
+HardenedBSD = "hbsd "
+Illumos = "lum "
+Linux = "lnx "
+Macos = "mac "
+Manjaro = "mjo "
+Mariner = "mrn "
+MidnightBSD = "mid "
+Mint = "mint "
+NetBSD = "nbsd "
+NixOS = "nix "
+OpenBSD = "obsd "
+openSUSE = "osuse "
+OracleLinux = "orac "
+Pop = "pop "
+Raspbian = "rasp "
+Redhat = "rhl "
+RedHatEnterprise = "rhel "
+Redox = "redox "
+Solus = "sol "
+SUSE = "suse "
+Ubuntu = "ubnt "
+Unknown = "unk "
+Windows = "win "
+
+[package]
+symbol = "pkg "
+disabled = true
+
+[perl]
+symbol = "pl "
+
+[php]
+symbol = "php "
+
+[pulumi]
+symbol = "pulumi "
+disabled = true
+
+[purescript]
+symbol = "purs "
+disabled = true
+
+[python]
+symbol = "py "
+
+[raku]
+symbol = "raku "
+disabled = true
+
+[ruby]
+symbol = "rb "
+disabled = true
+
+[rust]
+symbol = "rs "
+
+[scala]
+symbol = "scala "
+disabled = true
+
+[spack]
+symbol = "spack "
+disabled = true
+
+[sudo]
+symbol = "#"
+disabled = true
+format = "[$symbol]($style)"
+style = ''
+
+[status]
+symbol = '[✗](bold red)'
+success_symbol = '[✓](bold green)'
+format = ' [\[$symbol$maybe_int\]]($style) '
+not_executable_symbol = "[!EXE](red)"
+style = 'purple'
+not_found_symbol = "[!FOUND](red)"
+sigint_symbol = "[SIGINT](red)"
+signal_symbol = "[SIG](red)"
+map_symbol = true
+pipestatus = true
+pipestatus_format = '$pipestatus=> [\[$symbol$maybe_int\]]($style) '
+disabled = false
+
+[swift]
+symbol = "swift "
+disabled = true
+
+[time]
+disabled = false
+
+[terraform]
+symbol = "terraform "
+disabled = true
+
+[zig]
+symbol = "zig "
+disabled = true
