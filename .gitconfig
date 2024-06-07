@@ -1,0 +1,29 @@
+[init]
+	templateDir = /home/avinal/.git-template
+[rh-pre-commit]
+	checkSecrets = true
+	enableLocalConfig = false
+[user]
+	signingkey = F09D2CF3B880806C
+	email = avinal.xlvii@gmail.com
+	name = Avinal Kumar
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg
+[credential]
+	helper = store
+[core]
+	editor = nvim
+[rh-pre-commit "commit-msg"]
+  signOff = true
+[sendemail]
+  smtpServer = smtp.gmail.com
+  smtpEncryption = tls
+  smtpServerPort = 587
+  confirm = always
+  suppresscc = self
+  smtpUser = avinal.xlvii@gmail.com
+  from = "Avinal Kumar <avinal.xlvii@gmail.com>"
+  cc = "Avinal Kumar <avinal.xlvii@gmail.com>"
+
