@@ -1,0 +1,21 @@
+#!/bin/bash
+
+volume_sink=$(pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}' | tr -d '%')
+    volume_source=$(pactl get-source-volume @DEFAULT_SOURCE@ | awk '{print $5}' | tr -d '%')
+
+    is_sink_muted=$(pactl list sinks | grep "Mute: yes" | awk '{print $2}')
+    is_source_muted=$(pactl list sources | grep "Mute: yes" | awk '{print $2}')
+
+    if [[ "$is_sink_muted" == "yes" ]]; then
+        sink_mute_status="Muted"
+    else
+        sink_mute_status="Unmuted"
+    fi
+
+    if [[ "$is_source_muted" == "yes" ]]; then
+        source_mute_status="Mic Muted"
+    else
+        source_mute_status="Mic Unmuted"
+    fi
+
+    dunstify -u low -i audio-volume-medium -r 2593 "Volume: $volume_sink%" "\nSpeaker: $sink_mute_status\nMic: $source_mute_status" -h int:value:$volume_sink
