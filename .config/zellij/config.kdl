@@ -242,7 +242,7 @@ serialize_pane_viewport true
 //
 themes {
   carbonfox {
-    bg "#161616"
+    bg "#2a2a2a"
     fg "#f2f4f8"
     red "#ee5396"
     green "#25be6a"
@@ -262,7 +262,7 @@ themes {
 theme "carbonfox"
 
 // The name of the default layout to load on startup
-// Default: "default"
+Default: "compact"
 //
 default_layout "compact"
 
