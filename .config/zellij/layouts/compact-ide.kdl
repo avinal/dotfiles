@@ -1,12 +1,20 @@
 layout {
-  pane split_direction="horizontal"{
-    pane command="nvim" focus=true name="Editor" size="75%" {
-      args "."
+  pane split_direction="horizontal" {
+    pane {
+      edit "."
+      focus true
+      name "Editor"
+      size "75%"
+      borderless true
     }
-    pane name="Terminal"
+    pane {
+      size "25%"
+    }
   }
 
-  pane size=1 borderless=true {
+  pane {
     plugin location="zellij:compact-bar"
+    borderless true
+    size 1
   }
 }

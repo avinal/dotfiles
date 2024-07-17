@@ -7,6 +7,18 @@ vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = false
 
+-- Set additional path because the information is lost inside zellij
+local bin_paths = {
+  '/home/avinal/.nvm/versions/node/v22.1.0/bin',
+  '/home/avinal/.local/bin',
+  '/home/avinal/.krew/bin',
+  '/home/avinal/bin',
+  '/usr/local/go/bin',
+  '/home/avinal/go/bin',
+}
+
+vim.env.PATH = table.concat(bin_paths, ':') .. ':' .. vim.env.PATH
+
 -- [[ Setting options ]]
 require 'options'
 

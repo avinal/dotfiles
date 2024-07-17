@@ -1,14 +1,22 @@
 layout {
   pane split_direction="vertical" {
-    pane command="nvim" focus=true name="Editor" size="60%" {
-      args "."
+    pane {
+      edit "."
+      focus true
+      name "Editor"
+      size "60%"
+      borderless true
     }
-    pane split_direction="horizontal" name="terminal" {
-      pane name="Git" command="lazygit"
-      pane name="Terminal" size="25%" 
+    pane stacked=true {
+      pane {
+        name "LazyGit"
+        command "lazygit"
+      }
+      pane {
+        name "Terminal"
+      }
     }
   }
-
   pane size=1 borderless=true {
     plugin location="zellij:compact-bar"
   }

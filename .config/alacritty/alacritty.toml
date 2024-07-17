@@ -91,3 +91,7 @@ color = "#3ddbd9"
 [[colors.indexed_colors]]
 index = 17
 color = "#ff7eb6"
+
+[cursor]
+style = { shape = "Underline", blinking = "On" }
+vi_mode_style = { shape = "Block", blinking = "Off" }
