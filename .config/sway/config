@@ -31,11 +31,11 @@ set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # Requires: desktop-backgrounds-compat, swaybg
-output * bg /usr/share/backgrounds/default.png fill
+output * bg /usr/share/backgrounds/zenitsu.jpg fill
 
 for_window [window_type="dialog"] floating enable
 for_window [window_role="dialog"] floating enable
-for_window [app_id="firefox" title="Picture-in-Picture$"] floating enable
+for_window [app_id="firefox" title="Picture-in-Picture$"] floating enable sticky enable
 for_window [app_id="com.github.hluk.copyq"] floating enable
 #
 # Example configuration:
@@ -54,8 +54,8 @@ for_window [app_id="com.github.hluk.copyq"] floating enable
 font pango:'Monaspace Argon' Regular 11
 # titlebar_padding 1
 # titlebar_border_thickness 0
+# gaps outer 4
 # gaps inner 4
-# gaps outer 7
 ### Idle configuration
 #
 # Example configuration:
@@ -181,6 +181,7 @@ input type:keyboard {
     bindsym $mod+s layout stacking
     bindsym $mod+w layout tabbed
     bindsym $mod+e layout toggle split
+    bindsym $mod+Shift+s sticky toggle
 
    # Make the current focus fullscreen
     bindsym $mod+f fullscreen

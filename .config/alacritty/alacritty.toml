@@ -1,5 +1,7 @@
 [window]
-padding = { x = 7, y = 7 }
+padding = { x = 3, y = 3 }
+dynamic_padding = true
+decorations = "None"
 
 [font]
 normal = { family = "Monaspace Argon", style = "Regular" }

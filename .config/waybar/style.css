@@ -1,8 +1,15 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: 'JetBrainsMono Nerd Font';
-    font-size: 16px;
-    padding: 3px;
+    font-family: 'Monaspace Argon';
+    font-size: 15px;
+    padding: 2px 0;
+    margin: 2px 0;
+    border: none;
+    border-radius: 0;
+}
+
+#window {
+    padding: 1px 0;
 }
 
 window#waybar {
@@ -12,29 +19,10 @@ window#waybar {
     color: #ffffff;
     transition-property: background-color;
     transition-duration: .5s;
+    /* border-right: 1px solid cyan; */
+    padding: 0 0;
 }
 
-window#waybar.hidden {
-    opacity: 0.2;
-}
-
-/*
-window#waybar.empty {
-    background-color: transparent;
-}
-window#waybar.solo {
-    background-color: #FFFFFF;
-}
-*/
-
-window#waybar.termite {
-    background-color: #3F3F3F;
-}
-
-window#waybar.chromium {
-    background-color: #000000;
-    border: none;
-}
 
 button {
     /* Use box-shadow instead of border so the text isn't offset */
@@ -51,8 +39,9 @@ button:hover {
 }
 
 #workspaces button {
-    padding: 0 5px;
+    padding: 0 0px;
     background-color: transparent;
+    /* border-left: 2px solid #3ddbd9; */
     color: #ffffff;
 }
 
@@ -62,9 +51,9 @@ button:hover {
 
 #workspaces button.focused {
     /* background-color: #64727D;*/
-    box-shadow: inset -2px -2px #ffffff, inset 2px 2px #ffffff;
-    /* border: 1px solid white; */
-    color: palevioletred
+    /* box-shadow: inset -2px -2px #ffffff, inset 2px 2px #ffffff; */
+    color: palevioletred;
+    /* outline-offset: 4px; */
 }
 
 #workspaces button.urgent {
@@ -73,42 +62,48 @@ button:hover {
 
 #mode {
     /* background-color: #64727D; */
-    border: 2px solid green;
+    animation-name: blink;
+    /* animation-duration: 0.5s; */
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    border-left: 2px solid darksalmon;
 }
 
 #clock,
 #battery,
 #cpu,
 #memory,
-#disk,
 #temperature,
-#backlight,
 #network,
 #pulseaudio,
 #wireplumber,
-#custom-media,
+#custom-dunst,
+#custom-spacer,
 #tray,
 #mode,
 #idle_inhibitor,
-#scratchpad,
-#mpd {
-    padding: 0 10px;
+#scratchpad {
+    padding: 0 2px;
+    /* border-right: 1px solid cyan; */
     background-color: #262626;
+    /* margin: 0 3px; */
 }
 
 #window,
 #workspaces {
-    margin: 0 4px;
+    /* padding: 1px 0; */
+    margin: 0 10px;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
 .modules-left>widget:first-child>#workspaces {
-    margin-left: 0;
+    margin-top: 0;
 }
 
 /* If workspaces is the rightmost module, omit right margin */
 .modules-right>widget:last-child>#workspaces {
-    margin-right: 0;
+    margin-bottom: 0;
 }
 
 #clock {
@@ -165,7 +160,7 @@ label:focus {
 }
 
 #network {
-    color: #2980b9;
+    color: lightseagreen;
 }
 
 #network.disconnected {
@@ -178,27 +173,6 @@ label:focus {
 
 #pulseaudio.muted {
     color: #90b1b1;
-}
-
-#wireplumber {
-    color: #fff0f5;
-}
-
-#wireplumber.muted {
-    color: #f53c3c;
-}
-
-#custom-media {
-    color: #66cc99;
-    min-width: 100px;
-}
-
-#custom-media.custom-spotify {
-    color: #66cc99;
-}
-
-#custom-media.custom-vlc {
-    color: #ffa000;
 }
 
 #temperature {
@@ -227,48 +201,7 @@ label:focus {
 }
 
 #idle_inhibitor.activated {
-    color: green;
-}
-
-#mpd {
-    background-color: #66cc99;
-    color: #2a5c45;
-}
-
-#mpd.disconnected {
-    background-color: #f53c3c;
-}
-
-#mpd.stopped {
-    background-color: #90b1b1;
-}
-
-#mpd.paused {
-    background-color: #51a37a;
-}
-
-#language {
-    background: #00b093;
-    color: #740864;
-    padding: 0 5px;
-    margin: 0 5px;
-    min-width: 16px;
-}
-
-#keyboard-state {
-    background: #97e1ad;
-    color: #000000;
-    padding: 0 0px;
-    margin: 0 5px;
-    min-width: 16px;
-}
-
-#keyboard-state>label {
-    padding: 0 5px;
-}
-
-#keyboard-state>label.locked {
-    background: rgba(0, 0, 0, 0.2);
+    color: lightgreen;
 }
 
 #scratchpad {
@@ -281,4 +214,13 @@ label:focus {
 
 #custom-wakatime {
     color: turquoise
+}
+
+#custom-dunst {
+color: aquamarine
+}
+
+#custom-dunst.dnd {
+    color: red;
+    /* text-decoration: strikethrough */
 }

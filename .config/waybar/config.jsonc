@@ -1,35 +1,63 @@
 {
-    // "layer": "top", // Waybar at top layer
-    "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 40, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
+    "layer": "top", // Waybar at top layer
+    "position": "left", // Waybar position (top|bottom|left|right)
+    // "height": 40, // Waybar height (to be removed for auto height)
+    "width": 20, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
+    "mode": "dock",
+    "fixed-center": false,
     // Choose the order of the modules
     "modules-left": [
-        "cpu",
-        "memory",
-        "temperature",
-        "custom/wakatime",
-        "network",
+        "sway/workspaces",
         "sway/mode",
         "sway/scratchpad",
         "custom/media"
     ],
     "modules-center": [
-        "sway/workspaces",
-        "clock",
-        "custom/weather"
+        "sway/window",
+        "privacy"
     ],
     "modules-right": [
-        "mpd",
-        "pulseaudio",
-        "backlight",
-        // "keyboard-state",
         "battery",
-        "idle_inhibitor",
-        // "custom/dunst",
-        "tray"
+        "custom/spacer",
+        "custom/wakatime",
+        "custom/spacer",
+        "pulseaudio",
+        "custom/spacer",
+        "group/system",
+        "custom/spacer",
+        "network",
+        "custom/spacer",
+        "clock",
+        "custom/spacer",
+        "custom/dunst",
+        "custom/spacer",
+        "group/tray"
     ],
+    "group/system": {
+        "orientation": "inherit",
+        "modules": [
+            "temperature",
+            "cpu",
+            "custom/spacer",
+            "memory",
+            "custom/spacer"
+        ],
+        "drawer": {
+            "transition-left-to-right": false
+        }
+    },
+    "group/tray": {
+        "orientation": "inherit",
+        "modules": [
+            "idle_inhibitor",
+            "tray"
+        ],
+        "drawer": {
+            "transition-left-to-right": false
+            // "tranasition-duration": 100
+        }
+    },
     // Modules configuration
     "sway/workspaces": {
         //   "disable-scroll": true,
@@ -37,36 +65,21 @@
         "warp-on-scroll": false,
         "format": "{name}",
         "disable-scroll-wraparound": true
-        //   "format-icons": {
-        //       "1": "",
-        //       "2": "",
-        //       "3": "",
-        //       "4": "",
-        //       "5": "",
-        //       "urgent": "",
-        //       "focused": "",
-        //       "default": ""
-        //   }
     },
-    // "keyboard-state": {
-    //     "capslock": true,
-    //     "format": "{icon}",
-    //     "format-icons": {
-    //         "locked": "\udb82\ude9b",
-    //         "unlocked": ""
-    //     }
-    // },
     "sway/window": {
-        "icon": true,
-        "icon-size": 20,
+        "icon": false,
+        // "icon-size": 20,
+        "rotate": 270,
         // "format": ""
         "rewrite": {
+            "Zellij \\((.*)\\) - .*": "Zellij [$1]",
             ".* - ([A-Za-z0-9 ]+)": "$1",
             ".* — ([A-Za-z0-9 ]+)": "$1"
         }
     },
     "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
+        "format": "<span style=\"italic\">{}</span>",
+        "rotate": 270
     },
     "sway/scratchpad": {
         "format": "{icon} {count}",
@@ -76,170 +89,149 @@
             ""
         ],
         "tooltip": true,
-        "tooltip-format": "{app}: {title}"
-    },
-    "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-        "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-        "unknown-tag": "N/A",
-        "interval": 2,
-        "consume-icons": {
-            "on": " "
-        },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
-        },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "tooltip-format": "MPD (connected)",
-        "tooltip-format-disconnected": "MPD (disconnected)"
+        "tooltip-format": "{app}: {title}",
+        "rotate": 270
     },
     "idle_inhibitor": {
-        "format": "<span size='large'>{icon}</span>",
+        "format": "{icon}",
         "format-icons": {
-            "activated": "\uf109",
-            "deactivated": "\udb81\udee7"
+            "activated": "Keep On",
+            "deactivated": "OFF"
         },
-        "tooltip-format-activated": "The screen won't turn off on idle.",
-        "tooltip-format-deactivated": "The screen will turn off on idle."
+        "rotate": 270,
+        "tooltip": false
+        // "tooltip-format-activated": "The screen won't turn off on idle.",
+        // "tooltip-format-deactivated": "The screen will turn off on idle."
     },
     "tray": {
         "icon-size": 20,
         "spacing": 10
     },
+    "privacy": {
+        "icon-spacing": 4,
+        "icon-size": 18,
+        "transition-duration": 250,
+        "modules": [
+            {
+                "type": "screenshare",
+                "tooltip": true,
+                "tooltip-icon-size": 24
+            },
+            {
+                "type": "audio-out",
+                "tooltip": true,
+                "tooltip-icon-size": 24
+            },
+            {
+                "type": "audio-in",
+                "tooltip": true,
+                "tooltip-icon-size": 24
+            }
+        ],
+        "rotate": 270
+    },
     "clock": {
-        // "timezone": "America/New_York",
+        "rotate": 270,
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "<span size='large'>\udb83\ude17</span> {:%Y-%m-%d}",
-        "format": "<span size='large'>\uf43a</span>  {:%H:%M}"
+        "format": "{:%a %b %d %R}",
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "days": "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-click-forward": "tz_up",
+            "on-click-backward": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
     },
     "cpu": {
-        "format": "<span size='large'>\uf4bc</span> {usage}%",
+        "format": "CPU {usage}%",
         "tooltip": true,
-        "interval": 5
+        "interval": 5,
+        "rotate": 270
     },
     "memory": {
-        "format": "<span size='large'>\uf463</span> {}%",
-        "tooltip-format": "RAM: {used}/{avail} | Swap: {swapUsed}/{swapTotal}"
+        "format": "RAM {}%",
+        "tooltip-format": "RAM: {used}/{avail} | Swap: {swapUsed}/{swapTotal}",
+        "rotate": 270
     },
     "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
         "critical-threshold": 80,
-        // "format-critical": "{temperatureC}°C {icon}",
-        "format": "<span size='large'>{icon}</span> {temperatureC}°C",
+        "format": "{icon} {temperatureC}°C",
         "format-icons": [
-            "\uf2cb",
-            "\uf2ca",
-            "\uf2c9",
-            "\uf2c7"
-        ]
-    },
-    "backlight": {
-        // "device": "acpi_video1",
-        "format": "<span size='large'>{icon}</span> {percent}%",
-        "format-icons": [
-            "\udb86\ude4e",
-            "\udb86\ude4f",
-            "\udb86\ude50",
-            "\udb86\ude51",
-            "\udb86\ude52",
-            "\udb86\ude53",
-            "\udb86\ude54",
-            "\udb86\ude55",
-            "\udb86\ude56",
-            "\udb81\udee8"
-        ]
+            "CHILL",
+            "WARM",
+            "HOT",
+            "BURN"
+        ],
+        "rotate": 270
     },
     "battery": {
         "states": {
-            // "good": 95,
-            "warning": 30,
-            "critical": 15
+            "best": 99,
+            "good": 70,
+            "warning": 40,
+            "critical": 20
         },
-        "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% \udb80\udc84",
-        "format-plugged": "{capacity}% \uf492",
-        "format-alt": "{time} {icon}",
+        "format": "{capacity}%",
+        "format-charging": "Charging {capacity}%",
+        "format-plugged": "Plugged {capacity}%",
+        "format-alt": "{icon} {time}",
+        "rotate": 270,
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
-        "format-icons": [
-            "\udb80\udc8e",
-            "\udb80\udc7a",
-            "\udb80\udc7c",
-            "\udb80\udc7e",
-            "\udb80\udc80",
-            "\udb80\udc82",
-            "\udb80\udc79"
-        ]
+        "format-icons": {
+            "best": "Feeling good",
+            "good": "Will last",
+            "warning": "Charge soon",
+            "critical": "Gonna die in"
+        }
     },
     "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "interval": 5,
-        "tooltip-format-wifi": "{icon} {essid}: ({signalStrength}%)",
-        "tooltip-format-ethernet": "\udb80\ude00 {ipaddr}/{cidr}",
-        "tooltip-format-disconnected": "\uead0 Please connect to a network.",
-        "format": "<span size='large' color='green'>\udb82\uddc7</span> {bandwidthUpBits:4} <span size='large' color='red'>\udb82\uddbf</span> {bandwidthDownBits:4}",
-        "format-disconnected": "<span size='large'>\uead0</span> Disconnected",
-        "format-icons": [
-            "\udb82\udd2f",
-            "\udb82\udd1f",
-            "\udb82\udd22",
-            "\udb82\udd25",
-            "\udb82\udd28"
-        ]
+        "interval": 10,
+        "format-wifi": "{essid} {frequency} ({signalStrength}%)",
+        "format-ethernet": "Ethernet: {ipaddr}/{cidr}",
+        "format-linked": "Linked: No Internet!",
+        "tooltip-format-disconnected": "Please connect to a network.",
+        "tooltip-format": "Up: {bandwidthUpBits:4} Down: {bandwidthDownBits:4}",
+        "format-disconnected": "No Network",
+        "rotate": 270
     },
     "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "<span size='large'>{icon}</span> {volume}% {format_source}",
-        "format-bluetooth": "<span size='large'>\udb80\udcb0 {icon}</span> {volume}% {format_source}",
-        "format-bluetooth-muted": "<span size='large'>\uf466 {icon}</span> {format_source}",
-        "format-muted": "<span size='large'>\udb81\udd81</span> {format_source}",
-        "format-source": "<span size='large'>\udb80\udf6e</span> {volume}%",
-        "format-source-muted": "<span size='large'>\udb80\udf6d</span>",
+        "format": "{icon} {volume}% {format_source}",
+        "format-bluetooth": "Bluetooth {volume}% {format_source}",
+        "format-bluetooth-muted": "<span color='red'><s>Bluetooth</> {format_source}",
+        "format-muted": "<span color='red'><s>{icon}</s></span> {format_source}",
+        "format-source": "Mic {volume}%",
+        "format-source-muted": "<span color='red'><s>Mic</s></span>",
         "format-icons": {
-            "headphone": "\udb80\udecb",
-            "hands-free": "\udb81\udcc3",
-            "headset": "\udb80\udece",
-            "phone": "\uf2a0",
-            "portable": "\udb86\udc52",
-            "car": "\udb80\udd0d",
-            "default": [
-                "\udb81\udd7f",
-                "\udb81\udd80",
-                "\udb81\udd7e"
-            ]
+            "headphone": "Headphone",
+            "headset": "Headphone",
+            "phone": "Phone",
+            "hdmi": "Monitor",
+            "default": "Speaker"
         },
-        "on-click": "pavucontrol"
-    },
-    "custom/media": {
-        "format": "{icon} {}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": "",
-            "default": "🎜"
-        },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+        "on-click": "pavucontrol",
+        "rotate": 270
     },
     "custom/wakatime": {
-        "format": "<span size='large'>\uf121</span>  {}",
+        "format": "{}",
         "exec": "~/.config/waybar/scripts/wakatime.sh",
         "tooltip": true,
         "return-type": "json",
-        "interval": 900
+        "interval": 900,
+        "rotate": 270
     },
     "custom/weather": {
         "exec": "$HOME/.config/waybar/scripts/get-weather.sh Bengaluru",
@@ -251,6 +243,14 @@
     "custom/dunst": {
         "exec": "~/.config/waybar/scripts/dunst.sh",
         "on-click": "dunstctl set-paused toggle",
-        "restart-interval": 1
+        "format": "{}",
+        "return-type": "json",
+        "restart-interval": 1,
+        "rotate": 270
+    },
+    "custom/spacer": {
+        "format": "|",
+        "rotate": 270,
+        "tooltip": false
     }
 }

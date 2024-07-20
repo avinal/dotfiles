@@ -3,7 +3,6 @@ layout {
     pane {
       edit "."
       focus true
-      name "Editor"
       size "75%"
       borderless true
     }
