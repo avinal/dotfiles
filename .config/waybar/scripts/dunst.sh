@@ -13,5 +13,5 @@ else
     tooltip+="paused"
 fi
 
-if [ $COUNT != 0 ]; then text+=":$COUNT"; fi
+if [ "$COUNT" != 0 ]; then status+=":$COUNT"; fi
 printf '{"text":"%s","tooltip":"%s","class":"%s"}' "$status" "$tooltip" "$class" | jq --unbuffered --compact-output

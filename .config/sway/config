@@ -16,6 +16,8 @@ set $right l
 # Your preferred terminal emulator
 # Recommends: foot
 set $term alacritty
+# set alternate terminal emulator
+set $alt_term gnome-terminal
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -27,6 +29,12 @@ set $rofi_cmd rofi \
 # TODO: add window with the next release of rofi-wayland
 set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
 
+### Clipboard configuration
+
+exec wl-paste --type text --watch cliphist store
+exec wl-paste --type image --watch cliphist store
+set $clip cliphist list | rofi -dmenu -P "Clipboard" | cliphist decode | wl-copy
+
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
@@ -35,27 +43,35 @@ output * bg /usr/share/backgrounds/zenitsu.jpg fill
 
 for_window [window_type="dialog"] floating enable
 for_window [window_role="dialog"] floating enable
-for_window [app_id="firefox" title="Picture-in-Picture$"] floating enable sticky enable
+for_window [app_id="org.mozilla.firefox" title="Picture-in-Picture"] floating enable sticky enable
 for_window [app_id="com.github.hluk.copyq"] floating enable
 #
 # Example configuration:
 #
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 # hidpi setup
 # output eDP-1 scale 1.25
 # output 'LG Electronics LG ULTRAWIDE 205NTSUG4894' scale 2
 
+## Decorations
+client.focused #00ffff #262626 #ffffff #48d1cc #00ffff
+client.urgent #dc143c #262626 #ffffff #f08080 #dc143c
+
 
 ## Font
-# default_border none
-# default_floating_border none
-font pango:'Monaspace Argon' Regular 11
+default_border pixel 2
+default_floating_border pixel 2
+smart_borders on
+# hide_edge_borders both
+# smart_gaps on 
+font pango:'Monaspace Radon' Regular 11
 # titlebar_padding 1
 # titlebar_border_thickness 0
 # gaps outer 4
-# gaps inner 4
+# gaps inner 2
+
+
 ### Idle configuration
 #
 # Example configuration:
@@ -98,6 +114,7 @@ input type:keyboard {
 #
     # Start a terminal
     bindsym $mod+Return exec $term
+    bindsym $mod+Shift+Return exec $alt_term
 
     # Kill focused window
     bindsym $mod+Shift+q kill
@@ -168,6 +185,11 @@ input type:keyboard {
     bindsym $mod+Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
+    # Touchpad swipes
+    bindgesture swipe:right workspace prev
+    bindgesture swipe:left workspace next
+    # Move back and forth
+    bindsym $mod+Tab workspace back_and_forth
 #
 # Layout stuff:
 #
@@ -207,6 +229,12 @@ input type:keyboard {
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
 #
+# Clipboard:
+#
+    bindsym $mod+c exec $clip
+
+
+#
 # Resizing containers:
 #
 mode "resize" {
@@ -230,6 +258,9 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
+
+## gestures
+
 
 # Include configs from 3 locations:
 #  - /usr/share/sway/config.d

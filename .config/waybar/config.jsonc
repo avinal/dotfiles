@@ -10,12 +10,10 @@
     "modules-left": [
         "sway/workspaces",
         "sway/mode",
-        "sway/scratchpad",
-        "custom/media"
+        "sway/scratchpad"
     ],
     "modules-center": [
-        "sway/window",
-        "privacy"
+        "sway/window"
     ],
     "modules-right": [
         "battery",
@@ -28,11 +26,11 @@
         "custom/spacer",
         "network",
         "custom/spacer",
+        "group/tray",
+        "custom/spacer",
         "clock",
         "custom/spacer",
-        "custom/dunst",
-        "custom/spacer",
-        "group/tray"
+        "custom/dunst"
     ],
     "group/system": {
         "orientation": "inherit",
@@ -72,9 +70,9 @@
         "rotate": 270,
         // "format": ""
         "rewrite": {
-            "Zellij \\((.*)\\) - .*": "Zellij [$1]",
             ".* - ([A-Za-z0-9 ]+)": "$1",
-            ".* — ([A-Za-z0-9 ]+)": "$1"
+            ".* — ([A-Za-z0-9 ]+)": "$1",
+            "^avinal@spacetime:.*": "GNOME Terminal"
         }
     },
     "sway/mode": {
@@ -107,33 +105,10 @@
         "icon-size": 20,
         "spacing": 10
     },
-    "privacy": {
-        "icon-spacing": 4,
-        "icon-size": 18,
-        "transition-duration": 250,
-        "modules": [
-            {
-                "type": "screenshare",
-                "tooltip": true,
-                "tooltip-icon-size": 24
-            },
-            {
-                "type": "audio-out",
-                "tooltip": true,
-                "tooltip-icon-size": 24
-            },
-            {
-                "type": "audio-in",
-                "tooltip": true,
-                "tooltip-icon-size": 24
-            }
-        ],
-        "rotate": 270
-    },
     "clock": {
         "rotate": 270,
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format": "{:%a %b %d %R}",
+        "format": "<span color='#ff6699'>{:%a %b %d %R}</span>",
         "calendar": {
             "mode": "month",
             "mode-mon-col": 3,
@@ -170,10 +145,10 @@
         "critical-threshold": 80,
         "format": "{icon} {temperatureC}°C",
         "format-icons": [
-            "CHILL",
-            "WARM",
-            "HOT",
-            "BURN"
+            "Chill",
+            "Warm",
+            "Hot",
+            "Burn"
         ],
         "rotate": 270
     },
@@ -201,11 +176,11 @@
     "network": {
         "interval": 10,
         "format-wifi": "{essid} {frequency} ({signalStrength}%)",
-        "format-ethernet": "Ethernet: {ipaddr}/{cidr}",
-        "format-linked": "Linked: No Internet!",
+        "format-ethernet": "Wired {ifname}",
+        "format-linked": "<span color='red'>No Internet!</span>",
         "tooltip-format-disconnected": "Please connect to a network.",
         "tooltip-format": "Up: {bandwidthUpBits:4} Down: {bandwidthDownBits:4}",
-        "format-disconnected": "No Network",
+        "format-disconnected": "Disconnected!",
         "rotate": 270
     },
     "pulseaudio": {

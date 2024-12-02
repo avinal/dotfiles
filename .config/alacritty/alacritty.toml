@@ -1,16 +1,17 @@
 [window]
-padding = { x = 3, y = 3 }
+padding = { x = 7, y = 5 }
 dynamic_padding = true
-decorations = "None"
+decorations = "Buttonless"
+dynamic_title = false
 
 [font]
-normal = { family = "Monaspace Argon", style = "Regular" }
-bold = { family = "Monaspace Argon", style = "Bold" }
-italic = { family = "Monaspace Argon", style = "Italic" }
-bold_italic = { family = "Monaspace Argon", style = "Bold Italic" }
-size = 14.5
+normal = { family = "Monaspace Neon", style = "Regular" }
+bold = { family = "Monaspace Neon", style = "Bold" }
+italic = { family = "Monaspace Neon", style = "Italic" }
+bold_italic = { family = "Monaspace Neon", style = "Bold Italic" }
+size = 15
 
-[shell]
+[terminal.shell]
 program = "zellij"
 args = ["-l", "welcome"]
 
@@ -60,30 +61,30 @@ background = "#2a2a2a"
 black = "#282828"
 red = "#ee5396"
 green = "#25be6a"
-yellow = "#08bdba"
-blue = "#78a9ff"
+yellow = "#f8e17c"
+blue = "#33b1ff"
 magenta = "#be95ff"
-cyan = "#33b1ff"
+cyan = "#3ddbd9"
 white = "#dfdfe0"
 
 [colors.bright]
 black = "#484848"
 red = "#f16da6"
 green = "#46c880"
-yellow = "#2dc7c4"
-blue = "#8cb6ff"
+yellow = "#f8e17c"
+blue = "#52bdff"
 magenta = "#c8a5ff"
-cyan = "#52bdff"
+cyan = "#2dc7c4"
 white = "#e4e4e5"
 
 [colors.dim]
 black = "#222222"
 red = "#ca4780"
 green = "#1fa25a"
-yellow = "#07a19e"
-blue = "#6690d9"
+yellow = "#f8e17c"
+blue = "#2b96d9"
 magenta = "#a27fd9"
-cyan = "#2b96d9"
+cyan = "#07a19e"
 white = "#bebebe"
 
 [[colors.indexed_colors]]
@@ -97,3 +98,7 @@ color = "#ff7eb6"
 [cursor]
 style = { shape = "Underline", blinking = "On" }
 vi_mode_style = { shape = "Block", blinking = "Off" }
+
+[selection]
+save_to_clipboard = true
+

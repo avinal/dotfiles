@@ -1,6 +1,6 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: 'Monaspace Argon';
+    font-family: 'Monaspace Radon';
     font-size: 15px;
     padding: 2px 0;
     margin: 2px 0;
@@ -39,25 +39,25 @@ button:hover {
 }
 
 #workspaces button {
-    padding: 0 0px;
+    padding: 2px 3px;
     background-color: transparent;
-    /* border-left: 2px solid #3ddbd9; */
     color: #ffffff;
+    /* margin-left: -6px; */
 }
 
 #workspaces button:hover {
     background: #66cc99;
 }
 
-#workspaces button.focused {
-    /* background-color: #64727D;*/
-    /* box-shadow: inset -2px -2px #ffffff, inset 2px 2px #ffffff; */
-    color: palevioletred;
-    /* outline-offset: 4px; */
-}
-
 #workspaces button.urgent {
     background-color: #eb4d4b;
+}
+
+
+#workspaces button.focused {
+    border-top: 2px solid cyan;
+    border-bottom: 2px solid cyan;
+    color: palevioletred;
 }
 
 #mode {
@@ -213,7 +213,7 @@ label:focus {
 }
 
 #custom-wakatime {
-    color: turquoise
+    color: darksalmon;
 }
 
 #custom-dunst {

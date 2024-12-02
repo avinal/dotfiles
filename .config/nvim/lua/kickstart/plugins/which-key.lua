@@ -18,10 +18,9 @@ return {
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     opts = {
-      presets = 'modern',
+      preset = 'modern',
       icons = {
         mappings = false,
-        rules = false,
       },
     },
     config = function() -- This is the function that runs, AFTER loading
