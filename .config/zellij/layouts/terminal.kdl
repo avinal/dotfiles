@@ -1,0 +1,32 @@
+layout {
+  pane {
+    borderless true 
+    size 1
+    plugin location="file:~/.config/zellij/plugins/zjstatus.wasm" {
+      format_left   "{tabs}"
+      format_center ""
+      format_right  "{mode} | {datetime} | #[fg=#66cc99]{session}"
+      format_space  ""
+
+      hide_frame_for_single_pane "false"
+
+      mode_normal  "#[fg=#00ffff]{name}"
+      mode_locked  "#[fg=#ff0000]{name}"
+      mode_tmux    "#[fg=#ffc387]{name}"
+
+      tab_normal   "{index}:#[fg=#ffffff]{name} #[fg=#90b1b1]{sync_indicator}{floating_indicator}{fullscreen_indicator} "
+      tab_active   "{index}:#[fg=#db7093]{name} #[fg=#90b1b1]{sync_indicator}{floating_indicator}{fullscreen_indicator} "
+
+      tab_display_count "9"
+      tab_separator " | "
+      tab_sync_indicator       "S"
+      tab_fullscreen_indicator "F"
+      tab_floating_indicator   "W"
+
+      datetime        "#[fg=#db7093]{format} "
+      datetime_format "%a %b %d %H:%M"
+      datetime_timezone "Asia/Kolkata"
+    }
+  }
+  pane
+}

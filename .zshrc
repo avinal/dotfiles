@@ -2,8 +2,12 @@
 export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:/home/avinal/go/bin
+export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_CACHE_HOME="$HOME/.cache"
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
@@ -144,6 +148,16 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 
+## Custom Functions
+znew() {
+  local layout_name="$1"
+  local tab_name="$2"
+  local folder_name="$3"
+
+  zellij action new-tab --layout "$layout_name" --name "$tab_name" --cwd "$folder_name"
+}
+
+
 export FZF_DEFAULT_OPTS='--height 25% --layout=reverse --border'
 
 alias work-git='git config user.email "avinal@redhat.com"'
@@ -153,3 +167,7 @@ eval "$(zoxide init zsh)"
 eval "$(atuin init zsh)"
 
 
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+. "$HOME/.atuin/bin/env"
