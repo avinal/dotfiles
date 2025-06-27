@@ -8,7 +8,8 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CACHE_HOME="$HOME/.cache"
-
+export TINYGOROOT="$HOME/tinygo"
+export OC_EDITOR="hx"
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
@@ -161,7 +162,7 @@ znew() {
 export FZF_DEFAULT_OPTS='--height 25% --layout=reverse --border'
 
 alias work-git='git config user.email "avinal@redhat.com"'
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 # eval "$(fzf --zsh)"
 eval "$(atuin init zsh)"

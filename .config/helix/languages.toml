@@ -1,0 +1,66 @@
+[language-server.harper-ls]
+command = "harper-ls"
+args = ["--stdio"]
+config = { harper-ls = { diagnosticSeverity = "error", linters = { long_sentences = false } } }
+
+[language-server.wakatime]
+command = "wakatime-ls"
+
+[language-server.yaml-language-server.config.yaml]
+format = { enable = true }
+validation = true
+
+[[language]]
+name = "c"
+file-types = ["c", "h"]
+formatter = { command = 'clang-format' }
+auto-format = false
+language-servers = ["clangd", "wakatime"]
+indent = { tab-width = 4, unit = "    " }
+
+[[language]]
+name = "cpp"
+file-types = ["cpp", "cc", "cxx", "hpp", "hcc", "hxx"]
+formatter = { command = 'clang-format' }
+language-servers = ["clangd", "wakatime"]
+auto-format = false
+indent = { tab-width = 4, unit = "    " }
+
+[[language]]
+name = "markdown"
+file-types = ["md", "rst", "adoc"]
+language-servers = ["marksman", "wakatime", "harper-ls"]
+
+[[language]]
+name = "go"
+language-servers = ["gopls", "wakatime"]
+formatter = { command = 'goimports' }
+auto-format = true
+
+[[language]]
+name = "yaml"
+language-servers = ["yaml-language-server", "wakatime"]
+
+[[language]]
+name = "bash"
+language-servers = ["bash-language-server", "wakatime"]
+
+[[language]]
+name = "html"
+language-servers = ["wakatime"]
+
+
+[[language]]
+name = "lua"
+language-servers = ["wakatime"]
+
+
+# [[language]]
+# name = "docker"
+# language-servers = ["wakatime"]
+
+
+[[language]]
+name = "json"
+language-servers = ["wakatime"]
+

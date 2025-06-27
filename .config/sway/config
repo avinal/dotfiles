@@ -15,9 +15,9 @@ set $up k
 set $right l
 # Your preferred terminal emulator
 # Recommends: foot
-set $term alacritty
+set $term kitty
 # set alternate terminal emulator
-set $alt_term gnome-terminal
+set $alt_term alacritty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.

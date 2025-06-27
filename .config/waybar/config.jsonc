@@ -175,7 +175,7 @@
     },
     "network": {
         "interval": 10,
-        "format-wifi": "{essid} {frequency} ({signalStrength}%)",
+        "format-wifi": "{essid} ({signalStrength}%)",
         "format-ethernet": "Wired {ifname}",
         "format-linked": "<span color='red'>No Internet!</span>",
         "tooltip-format-disconnected": "Please connect to a network.",

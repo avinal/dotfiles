@@ -1,0 +1,30 @@
+# Font related configs
+font-family = "Monaspace Neon"
+font-size = "14"
+adjust-underline-position = "1"
+adjust-underline-thickness = "1"
+#adjust-cell-width = "5%"
+#adjust-cell-height = "5%"
+adjust-box-thickness = "1"
+
+# Appearance
+# theme = "Oxocarbon"
+theme = "Raycast_Dark"
+# title = "Ghostty"
+window-decoration = true
+
+# Cursor setting
+cursor-style = "underline"
+cursor-click-to-move = true
+cursor-color = "cyan"
+cursor-text = "cyan"
+# cursor-invert-fg-bg = true
+# adjust-cursor-thickness = "2"
+
+# Shell setting
+shell-integration = "zsh"
+shell-integration-features = true
+
+# Clipboard
+clipboard-read = "allow"
+clipboard-write = "allow"

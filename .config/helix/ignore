@@ -1,0 +1,5 @@
+# Global ignore files
+
+
+# For golang
+vendor/

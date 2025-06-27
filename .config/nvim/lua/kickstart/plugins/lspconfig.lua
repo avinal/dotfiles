@@ -163,7 +163,17 @@ return {
         jsonls = {},
         dockerls = {},
         marksman = {},
-        harper_ls = {},
+        harper_ls = {
+          filetypes = {
+            'c',
+            'markdown',
+            'cpp',
+            'go',
+            'toml',
+            'yaml',
+          },
+        },
+        -- html = {},
         -- pyright = {},
         rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs

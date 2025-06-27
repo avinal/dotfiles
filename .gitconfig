@@ -14,16 +14,15 @@
 [credential]
 	helper = store
 [core]
-	editor = nvim
+	editor = hx
 [rh-pre-commit "commit-msg"]
-  signOff = true
+	signOff = true
 [sendemail]
-  smtpServer = smtp.gmail.com
-  smtpEncryption = tls
-  smtpServerPort = 587
-  confirm = always
-  suppresscc = self
-  smtpUser = avinal.xlvii@gmail.com
-  from = "Avinal Kumar <avinal.xlvii@gmail.com>"
-  cc = "Avinal Kumar <avinal.xlvii@gmail.com>"
-
+   smtpServer = smtp.gmail.com
+   smtpEncryption = tls
+   smtpServerPort = 587
+   confirm = always
+   suppresscc = self
+   smtpUser = avinal.xlvii@gmail.com
+   from = "Avinal Kumar <avinal.xlvii@gmail.com>"
+   cc = "Avinal Kumar <avinal.xlvii@gmail.com>"
