@@ -1,0 +1,42 @@
+theme = "carbonfox"
+
+[editor]
+rulers = [80, 100]
+mouse = true
+cursorline = true
+continue-comments = true
+bufferline = "multiple"
+color-modes = true
+end-of-line-diagnostics = "hint"
+popup-border = "popup"
+
+[editor.soft-wrap]
+enable = true
+
+[editor.lsp]
+display-messages = true
+#display-inlay-hints = true
+
+[editor.cursor-shape]
+insert = "underline"
+select = "bar"
+
+[editor.file-picker]
+hidden = false
+ignore = true
+
+
+[editor.whitespace]
+render = "none"
+
+[editor.indent-guides]
+render = true
+
+[editor.inline-diagnostics]
+cursor-line = "error"
+other-lines = "warning"
+
+[editor.statusline]
+left = ["mode", "spacer", "version-control", "spacer", "file-name", "read-only-indicator"]
+center = ["diagnostics", "spinner", "file-modification-indicator"]
+right = ["primary-selection-length", "selections", "register", "position", "separator", "total-line-numbers"]
