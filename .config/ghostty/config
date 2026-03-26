@@ -1,30 +1,67 @@
-# Font related configs
-font-family = "Monaspace Neon"
-font-size = "14"
-adjust-underline-position = "1"
-adjust-underline-thickness = "1"
-#adjust-cell-width = "5%"
-#adjust-cell-height = "5%"
-adjust-box-thickness = "1"
+# Font
+font-family = "Iosevka Term"
+font-size = 14
+font-feature = "calt"
+font-feature = "liga"
+adjust-underline-position = 1
+adjust-underline-thickness = 1
+adjust-box-thickness = 1
+bold-is-bright = true
+freetype-load-flags = hinting,autohint,light
 
 # Appearance
-# theme = "Oxocarbon"
-theme = "Raycast_Dark"
-# title = "Ghostty"
+theme = "vim_dark_high_contrast"
 window-decoration = true
+window-padding-x = 4
+window-padding-y = 2
+window-padding-balance = true
+mouse-hide-while-typing = true
+unfocused-split-opacity = 0.85
+resize-overlay = after-first
+resize-overlay-position = bottom-right
 
-# Cursor setting
-cursor-style = "underline"
+# Cursor
+cursor-style = block_hollow
+cursor-style-blink = false
 cursor-click-to-move = true
-cursor-color = "cyan"
-cursor-text = "cyan"
-# cursor-invert-fg-bg = true
-# adjust-cursor-thickness = "2"
+cursor-color = cyan
+cursor-text = cyan
 
-# Shell setting
-shell-integration = "zsh"
+# Shell
+shell-integration = zsh
 shell-integration-features = true
 
 # Clipboard
-clipboard-read = "allow"
-clipboard-write = "allow"
+clipboard-read = allow
+clipboard-write = allow
+copy-on-select = clipboard
+
+# Scrollback (10MB per surface)
+scrollback-limit = 10000000
+
+# Links
+link-url = true
+
+# Notifications for long commands (KDE supports this natively)
+notify-on-command-finish = unfocused
+notify-on-command-finish-after = 10s
+
+# Window behavior
+confirm-close-surface = true
+window-inherit-working-directory = true
+window-save-state = always
+
+# Quick terminal (toggle with a keybind)
+quick-terminal-position = top
+quick-terminal-size = 40%
+quick-terminal-autohide = false
+
+# GTK/Linux specific
+gtk-titlebar = false
+gtk-tabs-location = hidden
+gtk-single-instance = true
+
+# Keybinds
+keybind = ctrl+grave_accent=toggle_quick_terminal
+keybind = ctrl+shift+t=new_tab
+keybind = ctrl+shift+n=new_window

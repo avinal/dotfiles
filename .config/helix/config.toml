@@ -1,4 +1,4 @@
-theme = "carbonfox"
+theme = "vim_dark_high_contrast"
 
 [editor]
 rulers = [80, 100]
@@ -9,6 +9,7 @@ bufferline = "multiple"
 color-modes = true
 end-of-line-diagnostics = "hint"
 popup-border = "popup"
+scrolloff = 2
 
 [editor.soft-wrap]
 enable = true

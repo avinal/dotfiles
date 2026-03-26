@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# hx-pick: loop between file picker and helix
+# Select a file -> edit in helix -> back to picker on exit
+# Press Esc/Ctrl-C in the picker to drop to a normal shell
+
+dir="${1:-.}"
+cd "$dir" || exit 1
+
+while true; do
+  file=$(find . -type f \
+    -not -path './.git/*' \
+    -not -path '*/node_modules/*' \
+    -not -path '*/vendor/*' \
+    -not -path '*/__pycache__/*' \
+    -not -path '*/target/*' \
+    -not -path '*/.build/*' \
+    | sort \
+    | fzf --height=100% --layout=reverse --border=rounded \
+           --prompt="Edit > " \
+           --header="Esc to exit to shell" \
+           --preview='head -100 {}' \
+           --preview-window=right:50%:wrap)
+
+  [ -z "$file" ] && break
+  hx "$file"
+done

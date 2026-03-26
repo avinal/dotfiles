@@ -1,5 +1,5 @@
 [init]
-	templateDir = /home/avinal/.git-template
+	templateDir = ~/.git-template
 [rh-pre-commit]
 	checkSecrets = true
 	enableLocalConfig = false
@@ -12,17 +12,21 @@
 [gpg]
 	program = gpg
 [credential]
-	helper = store
+	helper = /usr/libexec/git-core/git-credential-libsecret
 [core]
 	editor = hx
+[merge]
+	conflictstyle = zdiff3
+[diff]
+	colorMoved = default
 [rh-pre-commit "commit-msg"]
 	signOff = true
 [sendemail]
-   smtpServer = smtp.gmail.com
-   smtpEncryption = tls
-   smtpServerPort = 587
-   confirm = always
-   suppresscc = self
-   smtpUser = avinal.xlvii@gmail.com
-   from = "Avinal Kumar <avinal.xlvii@gmail.com>"
-   cc = "Avinal Kumar <avinal.xlvii@gmail.com>"
+	smtpServer = smtp.gmail.com
+	smtpEncryption = tls
+	smtpServerPort = 587
+	confirm = always
+	suppresscc = self
+	smtpUser = avinal.xlvii@gmail.com
+	from = "Avinal Kumar <avinal.xlvii@gmail.com>"
+	cc = "Avinal Kumar <avinal.xlvii@gmail.com>"

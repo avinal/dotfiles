@@ -22,7 +22,11 @@ _darcs
 ^/LICENSE.*
 ^/COPYING
 
-# Ignore secrets
+# Ignore non-config items
+archive
+themes
 .wakatime.cfg
 logid
 bootstrap
+themetest.md
+pikvm
