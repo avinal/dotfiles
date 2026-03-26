@@ -1,5 +1,15 @@
 # Global ignore files
 
-
-# For golang
+# Dependencies
 vendor/
+node_modules/
+
+# Build artifacts
+target/
+dist/
+build/
+_build/
+__pycache__/
+
+# Version control
+.git/

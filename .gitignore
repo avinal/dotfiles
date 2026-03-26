@@ -1,0 +1,8 @@
+*.bak
+**/state.yml
+**/*.log
+
+# Secrets - never commit these
+.wakatime.cfg
+.config/gh/hosts.yml
+pikvm/vnc

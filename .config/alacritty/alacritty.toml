@@ -1,104 +1,49 @@
 [window]
 padding = { x = 7, y = 5 }
 dynamic_padding = true
-decorations = "Buttonless"
 dynamic_title = false
 
 [font]
-normal = { family = "Monaspace Neon", style = "Regular" }
-bold = { family = "Monaspace Neon", style = "Bold" }
-italic = { family = "Monaspace Neon", style = "Italic" }
-bold_italic = { family = "Monaspace Neon", style = "Bold Italic" }
-size = 15
-
-[terminal.shell]
-program = "zellij"
-args = ["-l", "welcome"]
-
-# Nightfox Alacritty Colors
-## name: carbonfox
-## upstream: https://github.com/edeneast/nightfox.nvim/raw/main/extra/carbonfox/alacritty.toml
+normal = { family = "Iosevka Term", style = "Regular" }
+bold = { family = "Iosevka Term", style = "Bold" }
+italic = { family = "Iosevka Term", style = "Italic" }
+bold_italic = { family = "Iosevka Term", style = "Bold Italic" }
+size = 14
 
 [colors.primary]
-background = "#161616"
-foreground = "#f2f4f8"
-dim_foreground = "#b6b8bb"
-bright_foreground = "#f9fbff"
+background = "#111111"
+foreground = "#c1c9d2"
 
 [colors.cursor]
-text = "#f2f4f8"
-cursor = "#b6b8bb"
-
-[colors.vi_mode_cursor]
-text = "#f2f4f8"
-cursor = "#33b1ff"
-
-[colors.search.matches]
-foreground = "#f2f4f8"
-background = "#525253"
-
-[colors.search.focused_match]
-foreground = "#f2f4f8"
-background = "#3ddbd9"
-
-[colors.footer_bar]
-foreground = "#f2f4f8"
-background = "#353535"
-
-[colors.hints.start]
-foreground = "#f2f4f8"
-background = "#3ddbd9"
-
-[colors.hints.end]
-foreground = "#f2f4f8"
-background = "#353535"
+text = "#111111"
+cursor = "#c1c9d2"
 
 [colors.selection]
-text = "#f2f4f8"
-background = "#2a2a2a"
+text = "#ffffff"
+background = "#3e4043"
 
 [colors.normal]
-black = "#282828"
-red = "#ee5396"
-green = "#25be6a"
-yellow = "#f8e17c"
-blue = "#33b1ff"
-magenta = "#be95ff"
-cyan = "#3ddbd9"
-white = "#dfdfe0"
+black = "#000000"
+red = "#ed5f74"
+green = "#1ea672"
+yellow = "#d97917"
+blue = "#688ef1"
+magenta = "#c96ed0"
+cyan = "#3a97d4"
+white = "#e3e8ee"
 
 [colors.bright]
-black = "#484848"
-red = "#f16da6"
-green = "#46c880"
-yellow = "#f8e17c"
-blue = "#52bdff"
-magenta = "#c8a5ff"
-cyan = "#2dc7c4"
-white = "#e4e4e5"
-
-[colors.dim]
-black = "#222222"
-red = "#ca4780"
-green = "#1fa25a"
-yellow = "#f8e17c"
-blue = "#2b96d9"
-magenta = "#a27fd9"
-cyan = "#07a19e"
-white = "#bebebe"
-
-[[colors.indexed_colors]]
-index = 16
-color = "#3ddbd9"
-
-[[colors.indexed_colors]]
-index = 17
-color = "#ff7eb6"
+black = "#697386"
+red = "#fbb5b2"
+green = "#85d996"
+yellow = "#efc078"
+blue = "#9fcdff"
+magenta = "#f0b4e4"
+cyan = "#7fd3ed"
+white = "#ffffff"
 
 [cursor]
 style = { shape = "Underline", blinking = "On" }
-vi_mode_style = { shape = "Block", blinking = "Off" }
 
 [selection]
 save_to_clipboard = true
-

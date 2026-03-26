@@ -1,4 +1,9 @@
 layout {
+  pane {
+    borderless true
+    size 1
+    plugin location="zellij:compact-bar"
+  }
   pane split_direction="horizontal" {
     pane {
       command "hx"
@@ -10,10 +15,5 @@ layout {
     pane {
       size "25%"
     }
-  }
-  pane {
-    borderless true 
-    size 1 
-    plugin location="zellij:compact-bar"
   }
 }

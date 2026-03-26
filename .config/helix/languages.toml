@@ -9,6 +9,14 @@ command = "wakatime-ls"
 [language-server.yaml-language-server.config.yaml]
 format = { enable = true }
 validation = true
+schemaStore = { enable = true }
+
+[language-server.yaml-language-server.config.yaml.schemas]
+"https://json.schemastore.org/github-workflow.json" = ".github/workflows/*.{yml,yaml}"
+"https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-tasks.json" = "roles/{tasks,handlers}/*.{yml,yaml}"
+"https://raw.githubusercontent.com/redhat-developer/vscode-tekton/refs/heads/main/scheme/tekton.dev/v1beta1_Task.json" = "tasks/*.{yml,yaml}"
+"https://raw.githubusercontent.com/redhat-developer/vscode-tekton/refs/heads/main/scheme/tekton.dev/v1_Pipeline.json" = "pipelines/*.{yml,yaml}"
+"https://raw.githubusercontent.com/redhat-developer/vscode-tekton/refs/heads/main/scheme/tekton.dev/v1_PipelineRun.json" = ".tekton/*.{yml,yaml}"
 
 [[language]]
 name = "c"
@@ -46,21 +54,45 @@ name = "bash"
 language-servers = ["bash-language-server", "wakatime"]
 
 [[language]]
-name = "html"
-language-servers = ["wakatime"]
+name = "python"
+language-servers = ["pylsp", "wakatime"]
+auto-format = true
 
+[[language]]
+name = "rust"
+language-servers = ["rust-analyzer", "wakatime"]
+auto-format = true
+
+[[language]]
+name = "typescript"
+language-servers = ["typescript-language-server", "wakatime"]
+auto-format = true
+
+[[language]]
+name = "javascript"
+language-servers = ["typescript-language-server", "wakatime"]
+auto-format = true
+
+[[language]]
+name = "html"
+language-servers = ["vscode-html-language-server", "wakatime"]
+
+[[language]]
+name = "css"
+language-servers = ["vscode-css-language-server", "wakatime"]
 
 [[language]]
 name = "lua"
-language-servers = ["wakatime"]
+language-servers = ["lua-language-server", "wakatime"]
 
-
-# [[language]]
-# name = "docker"
-# language-servers = ["wakatime"]
-
+[[language]]
+name = "dockerfile"
+language-servers = ["docker-langserver", "wakatime"]
 
 [[language]]
 name = "json"
-language-servers = ["wakatime"]
+language-servers = ["vscode-json-language-server", "wakatime"]
 
+[[language]]
+name = "toml"
+language-servers = ["taplo", "wakatime"]

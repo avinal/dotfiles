@@ -1,0 +1,50 @@
+gui:
+  showBottomLine: false
+  showPanelJumps: true
+  showCommandLog: false
+  showRandomTip: false
+  nerdFontsVersion: ""
+  showFileIcons: false
+  border: rounded
+  filterMode: fuzzy
+  showDivergenceFromBaseBranch: arrowAndNumber
+  animateExplosion: false
+  theme:
+    activeBorderColor:
+      - "#3a97d4"
+      - bold
+    inactiveBorderColor:
+      - "#697386"
+    selectedLineBgColor:
+      - "#3e4043"
+    optionsTextColor:
+      - "#3a97d4"
+    unstagedChangesColor:
+      - "#ed5f74"
+    defaultFgColor:
+      - "#c1c9d2"
+
+git:
+  autoFetch: true
+  autoRefresh: true
+  branchLogCmd: git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --
+os:
+  editor: hx
+  editPreset: helix
+customCommands:
+  - key: "C"
+    context: files
+    command: git commit -m '{{index .PromptResponses 0}}' -m '{{index .PromptResponses 1}}'
+    description: "Commit with body"
+    prompts:
+      - type: input
+        title: "Summary"
+      - type: input
+        title: "Description"
+  - key: "b"
+    context: files
+    command: git checkout -b {{index .PromptResponses 0}}
+    description: "New branch from here"
+    prompts:
+      - type: input
+        title: "Branch name"
