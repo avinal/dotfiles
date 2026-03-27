@@ -1,4 +1,4 @@
-theme = "vim_dark_high_contrast"
+theme = "space_carbon"
 
 [editor]
 rulers = [80, 100]

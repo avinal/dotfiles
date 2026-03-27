@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# razer-setup: configure Razer mouse with Space Carbon theme colors
+# Finds the first razermouse in sysfs and applies DPI, poll rate, and lighting
+
+find_mouse() {
+    for dev in /sys/bus/hid/drivers/razermouse/0003:*; do
+        [ -f "$dev/device_type" ] && echo "$dev" && return
+    done
+    echo "No Razer mouse found" >&2; exit 1
+}
+
+DEV=$(find_mouse)
+NAME=$(cat "$DEV/device_type")
+echo "Found: $NAME"
+
+# DPI stages: 400, 800, 1200, 1800 (active), 3200
+# Format: active_stage(1-based) then (X_hi X_lo Y_hi Y_lo) per stage
+set_dpi() {
+    local active=${1:-4}
+    printf '\x04' > "$DEV/dpi_stages"  # stage count byte placeholder
+    # Actually the dpi_stages sysfs takes binary:
+    # byte 0 = active stage (1-indexed)
+    # then 4 bytes per stage: X_hi, X_lo, Y_hi, Y_lo
+    printf '\x04\x01\x90\x01\x90\x03\x20\x03\x20\x04\xb0\x04\xb0\x07\x08\x07\x08\x0c\x80\x0c\x80' > "$DEV/dpi_stages"
+    echo "  DPI stages: 400, 800, 1200, 1800*, 3200"
+}
+
+set_poll_rate() {
+    echo "$1" > "$DEV/poll_rate"
+    echo "  Poll rate: ${1}Hz"
+}
+
+set_color_static() {
+    # Space Carbon cyan: #3a97d4 = RGB(58, 151, 212)
+    printf '\x3a\x97\xd4' > "$DEV/matrix_effect_static"
+    echo "  Lighting: static cyan (#3a97d4)"
+}
+
+set_brightness() {
+    printf "$(printf '\\x%02x' "$1")" > "$DEV/matrix_brightness"
+    echo "  Brightness: $1/255"
+}
+
+case "${1:-apply}" in
+    apply)
+        set_dpi
+        set_poll_rate 500
+        set_color_static
+        set_brightness 128
+        echo "Done."
+        ;;
+    spectrum)
+        printf '' > "$DEV/matrix_effect_spectrum"
+        echo "  Lighting: spectrum"
+        ;;
+    off)
+        printf '' > "$DEV/matrix_effect_none"
+        echo "  Lighting: off"
+        ;;
+    color)
+        # Usage: razer-setup color RRGGBB
+        hex="${2:?Usage: razer-setup color RRGGBB}"
+        r=$((16#${hex:0:2}))
+        g=$((16#${hex:2:2}))
+        b=$((16#${hex:4:2}))
+        printf "\\x$(printf '%02x' $r)\\x$(printf '%02x' $g)\\x$(printf '%02x' $b)" > "$DEV/matrix_effect_static"
+        echo "  Lighting: static #$hex"
+        ;;
+    status)
+        echo "  Type: $(cat "$DEV/device_type")"
+        [ -f "$DEV/poll_rate" ] && echo "  Poll rate: $(cat "$DEV/poll_rate")Hz"
+        [ -f "$DEV/charge_level" ] && echo "  Battery: $(cat "$DEV/charge_level")%"
+        [ -f "$DEV/charge_status" ] && echo "  Charging: $(cat "$DEV/charge_status")"
+        ;;
+    *)
+        echo "Usage: razer-setup [apply|spectrum|off|color RRGGBB|status]"
+        ;;
+esac
