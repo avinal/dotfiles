@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Zellij + Helix Cheatsheet</title>
+<style>
+  @page { size: A4 landscape; margin: 12mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Iosevka", "JetBrains Mono", "Fira Code", monospace;
+         background: #000; color: #c1c9d2; font-size: 11px; line-height: 1.4; }
+  .page { display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+          padding: 16px; max-width: 1100px; margin: auto; }
+  .col { display: flex; flex-direction: column; gap: 10px; }
+  h1 { grid-column: 1 / -1; text-align: center; font-size: 20px; color: #1ea672;
+       border-bottom: 2px solid #3e4043; padding-bottom: 6px; margin-bottom: 4px; }
+  h2 { font-size: 13px; color: #1ea672; border-bottom: 1px solid #3e4043;
+       padding-bottom: 3px; margin-bottom: 4px; }
+  h3 { font-size: 11px; color: #d97917; margin: 6px 0 2px; }
+  .section { background: #111; border: 1px solid #3e4043; border-radius: 6px; padding: 8px 10px; }
+  table { width: 100%; border-collapse: collapse; }
+  td { padding: 2px 4px; vertical-align: top; }
+  td:first-child { white-space: nowrap; color: #3a97d4; font-weight: bold; width: 40%; }
+  td:last-child { color: #c1c9d2; }
+  tr:nth-child(even) { background: rgba(62,64,67,0.2); }
+  kbd { background: #3e4043; color: #fff; padding: 1px 5px; border-radius: 3px;
+        font-size: 10px; border: 1px solid #555; font-family: inherit; }
+  .note { color: #c96ed0; font-size: 10px; font-style: italic; margin-top: 4px; }
+  .prefix { color: #ed5f74; }
+  @media print {
+    body { background: #000; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { padding: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>Zellij + Helix Cheatsheet</h1>
+
+  <div class="col">
+
+    <div class="section">
+      <h2>Zellij &mdash; Prefix: <kbd>Ctrl+a</kbd></h2>
+      <p class="note">Default mode is locked. Only <kbd>Ctrl+a</kbd> and <kbd>Alt+1-9</kbd> are captured.</p>
+
+      <h3>Pane Navigation</h3>
+      <table>
+        <tr><td><kbd>Ctrl+a</kbd> <kbd>h/j/k/l</kbd> or <kbd>&larr;&darr;&uarr;&rarr;</kbd></td><td>Focus left / down / up / right</td></tr>
+        <tr><td><kbd>Ctrl+a</kbd> <kbd>|</kbd></td><td>Split right</td></tr>
+        <tr><td><kbd>Ctrl+a</kbd> <kbd>-</kbd></td><td>Split down</td></tr>
+        <tr><td><kbd>Ctrl+a</kbd> <kbd>x</kbd></td><td>Close pane</td></tr>
+        <tr><td><kbd>Ctrl+a</kbd> <kbd>z</kbd></td><td>Zoom (fullscreen toggle)</td></tr>
+        <tr><td><kbd>Ctrl+a</kbd> <kbd>f</kbd></td><td>Toggle floating panes</td></tr>
+        <tr><td><kbd>Ctrl+a</kbd> <kbd>e</kbd></td><td>Embed / float pane</td></tr>
+        <tr><td><kbd>Ctrl+a</kbd> <kbd>b</kbd></td><td>Break pane to new tab</td></tr>
+      </table>
+
+      <h3>Tab Navigation</h3>
+      <table>
+        <tr><td><kbd>Alt+1</kbd>&ndash;<kbd>9</kbd></td><td>Jump to tab (direct, no prefix)</td></tr>
+        <tr><td><kbd>Ctrl+a</kbd> <kbd>n / p</kbd></td><td>Next / previous tab</td></tr>
+        <tr><td><kbd>Ctrl+a</kbd> <kbd>Tab</kbd></td><td>Toggle last two tabs</td></tr>
+        <tr><td><kbd>Ctrl+a</kbd> <kbd>c</kbd></td><td>New tab</td></tr>
+        <tr><td><kbd>Ctrl+a</kbd> <kbd>,</kbd></td><td>Rename tab</td></tr>
+        <tr><td><kbd>Ctrl+a</kbd> <kbd>X</kbd></td><td>Close tab</td></tr>
+        <tr><td><kbd>Ctrl+a</kbd> <kbd>Space</kbd></td><td>Next swap layout</td></tr>
+      </table>
+
+      <h3>Session &amp; Plugins</h3>
+      <table>
+        <tr><td><kbd>Ctrl+a</kbd> <kbd>w</kbd></td><td>Session manager (fuzzy picker)</td></tr>
+        <tr><td><kbd>Ctrl+a</kbd> <kbd>o</kbd></td><td>File picker (strider)</td></tr>
+        <tr><td><kbd>Ctrl+a</kbd> <kbd>d</kbd></td><td>Detach session</td></tr>
+        <tr><td><kbd>Ctrl+a</kbd> <kbd>q</kbd></td><td>Quit zellij</td></tr>
+      </table>
+
+      <h3>Sub-modes (from <kbd>Ctrl+a</kbd>)</h3>
+      <table>
+        <tr><td><kbd>s</kbd> &rarr; Scroll</td><td><kbd>j/k</kbd> or <kbd>&darr;&uarr;</kbd> scroll, <kbd>d/u</kbd> page, <kbd>/</kbd> search, <kbd>e</kbd> edit</td></tr>
+        <tr><td><kbd>r</kbd> &rarr; Resize</td><td><kbd>h/j/k/l</kbd> or <kbd>&larr;&darr;&uarr;&rarr;</kbd> resize, <kbd>+/-</kbd> grow/shrink</td></tr>
+        <tr><td><kbd>m</kbd> &rarr; Move</td><td><kbd>h/j/k/l</kbd> or <kbd>&larr;&darr;&uarr;&rarr;</kbd> move pane</td></tr>
+      </table>
+      <p class="note"><kbd>Esc</kbd> exits any sub-mode. <kbd>Ctrl+a</kbd> from sub-mode &rarr; tmux mode.</p>
+
+      <h3>Passthrough</h3>
+      <table>
+        <tr><td><kbd>Ctrl+a</kbd> <kbd>Ctrl+a</kbd></td><td>Send literal Ctrl+a to app</td></tr>
+        <tr><td><kbd>Esc</kbd></td><td>Cancel / back to locked mode</td></tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Shell &mdash; zsh / fzf / zellij helpers</h2>
+      <table>
+        <tr><td><kbd>Ctrl+T</kbd></td><td>fzf file finder (with bat preview)</td></tr>
+        <tr><td><kbd>Alt+C</kbd></td><td>fzf cd into directory</td></tr>
+        <tr><td><kbd>Ctrl+R</kbd></td><td>Atuin history search</td></tr>
+        <tr><td><kbd>Ctrl+Right</kbd></td><td>Accept autosuggestion word-by-word</td></tr>
+        <tr><td><code>zwork</code></td><td>Pick folder &rarr; layout &rarr; new zellij tab</td></tr>
+        <tr><td><code>znew L N D</code></td><td>New tab: layout, name, directory</td></tr>
+        <tr><td><code>zi</code></td><td>Zoxide interactive cd</td></tr>
+      </table>
+    </div>
+
+  </div>
+
+  <div class="col">
+
+    <div class="section">
+      <h2>Helix &mdash; Normal Mode</h2>
+
+      <h3>Movement</h3>
+      <table>
+        <tr><td><kbd>h/j/k/l</kbd></td><td>Left / down / up / right</td></tr>
+        <tr><td><kbd>w / b / e</kbd></td><td>Word forward / back / end</td></tr>
+        <tr><td><kbd>W / B / E</kbd></td><td>WORD forward / back / end</td></tr>
+        <tr><td><kbd>f/t</kbd> <kbd>char</kbd></td><td>Find / till char forward</td></tr>
+        <tr><td><kbd>F/T</kbd> <kbd>char</kbd></td><td>Find / till char backward</td></tr>
+        <tr><td><kbd>gg / ge</kbd></td><td>Go to start / end of file</td></tr>
+        <tr><td><kbd>Ctrl+d / Ctrl+u</kbd></td><td>Half-page down / up</td></tr>
+        <tr><td><kbd>Ctrl+f / Ctrl+b</kbd></td><td>Page down / up</td></tr>
+        <tr><td><kbd>%</kbd></td><td>Jump to matching bracket</td></tr>
+      </table>
+
+      <h3>Selection &amp; Editing</h3>
+      <table>
+        <tr><td><kbd>v</kbd></td><td>Enter select mode</td></tr>
+        <tr><td><kbd>x</kbd></td><td>Select entire line</td></tr>
+        <tr><td><kbd>s</kbd></td><td>Select regex matches in selection</td></tr>
+        <tr><td><kbd>d / c</kbd></td><td>Delete / change selection</td></tr>
+        <tr><td><kbd>y / p</kbd></td><td>Yank / paste after</td></tr>
+        <tr><td><kbd>P</kbd></td><td>Paste before</td></tr>
+        <tr><td><kbd>r</kbd> <kbd>char</kbd></td><td>Replace with char</td></tr>
+        <tr><td><kbd>~</kbd></td><td>Toggle case</td></tr>
+        <tr><td><kbd>u / U</kbd></td><td>Undo / redo</td></tr>
+        <tr><td><kbd>&gt; / &lt;</kbd></td><td>Indent / dedent</td></tr>
+        <tr><td><kbd>J</kbd></td><td>Join lines</td></tr>
+        <tr><td><kbd>C</kbd></td><td>Copy selection to next line</td></tr>
+        <tr><td><kbd>Alt+s</kbd></td><td>Split selection on regex</td></tr>
+        <tr><td><kbd>Alt+d</kbd></td><td>Select all similar matches</td></tr>
+        <tr><td><kbd>Alt+.</kbd></td><td>Repeat last motion</td></tr>
+        <tr><td><kbd>Alt+,</kbd></td><td>Remove latest selection</td></tr>
+        <tr><td><kbd>Alt+o</kbd></td><td>Expand selection (treesitter)</td></tr>
+        <tr><td><kbd>Ctrl+a / Ctrl+x</kbd></td><td>Increment / decrement number</td></tr>
+      </table>
+
+      <h3>Goto <kbd>g</kbd></h3>
+      <table>
+        <tr><td><kbd>gd</kbd></td><td>Go to definition</td></tr>
+        <tr><td><kbd>gr</kbd></td><td>Go to references</td></tr>
+        <tr><td><kbd>gi</kbd></td><td>Go to implementation</td></tr>
+        <tr><td><kbd>gy</kbd></td><td>Go to type definition</td></tr>
+        <tr><td><kbd>ga</kbd></td><td>Go to last accessed file</td></tr>
+        <tr><td><kbd>gh / gl</kbd></td><td>Go to line start / end</td></tr>
+        <tr><td><kbd>gs</kbd></td><td>Go to first non-blank</td></tr>
+        <tr><td><kbd>gn</kbd></td><td>Go to next buffer</td></tr>
+        <tr><td><kbd>gp</kbd></td><td>Go to previous buffer</td></tr>
+      </table>
+
+      <h3>Space Menu <kbd>Space</kbd></h3>
+      <table>
+        <tr><td><kbd>Space f</kbd></td><td>File picker</td></tr>
+        <tr><td><kbd>Space F</kbd></td><td>File picker (cwd)</td></tr>
+        <tr><td><kbd>Space b</kbd></td><td>Buffer picker</td></tr>
+        <tr><td><kbd>Space j</kbd></td><td>Jumplist picker</td></tr>
+        <tr><td><kbd>Space s</kbd></td><td>Symbol picker</td></tr>
+        <tr><td><kbd>Space S</kbd></td><td>Workspace symbol picker</td></tr>
+        <tr><td><kbd>Space /</kbd></td><td>Global search</td></tr>
+        <tr><td><kbd>Space d</kbd></td><td>Diagnostics picker</td></tr>
+        <tr><td><kbd>Space a</kbd></td><td>Code action</td></tr>
+        <tr><td><kbd>Space r</kbd></td><td>Rename symbol</td></tr>
+        <tr><td><kbd>Space k</kbd></td><td>Show docs (hover)</td></tr>
+        <tr><td><kbd>Space h</kbd></td><td>Select all references</td></tr>
+        <tr><td><kbd>Space y / p</kbd></td><td>Yank / paste system clipboard</td></tr>
+      </table>
+
+      <h3>Window <kbd>Ctrl+w</kbd></h3>
+      <table>
+        <tr><td><kbd>Ctrl+w v/s</kbd></td><td>Vertical / horizontal split</td></tr>
+        <tr><td><kbd>Ctrl+w h/j/k/l</kbd></td><td>Focus split</td></tr>
+        <tr><td><kbd>Ctrl+w q</kbd></td><td>Close split</td></tr>
+        <tr><td><kbd>Ctrl+w o</kbd></td><td>Only (close other splits)</td></tr>
+      </table>
+
+      <h3>Match <kbd>m</kbd></h3>
+      <table>
+        <tr><td><kbd>mm</kbd></td><td>Jump to matching bracket</td></tr>
+        <tr><td><kbd>ms</kbd> <kbd>char</kbd></td><td>Surround with char</td></tr>
+        <tr><td><kbd>mr</kbd> <kbd>old</kbd> <kbd>new</kbd></td><td>Replace surround</td></tr>
+        <tr><td><kbd>md</kbd> <kbd>char</kbd></td><td>Delete surround</td></tr>
+        <tr><td><kbd>ma</kbd> <kbd>char</kbd></td><td>Select around</td></tr>
+        <tr><td><kbd>mi</kbd> <kbd>char</kbd></td><td>Select inside</td></tr>
+      </table>
+
+      <h3>Insert Mode (from <kbd>i/a/o/I/A/O</kbd>)</h3>
+      <table>
+        <tr><td><kbd>Esc</kbd></td><td>Back to normal</td></tr>
+        <tr><td><kbd>Ctrl+s</kbd></td><td>Save</td></tr>
+        <tr><td><kbd>Ctrl+w</kbd></td><td>Delete word backward</td></tr>
+        <tr><td><kbd>Ctrl+space</kbd></td><td>Trigger completion</td></tr>
+      </table>
+
+      <h3>Commands <kbd>:</kbd></h3>
+      <table>
+        <tr><td><kbd>:w / :q / :wq</kbd></td><td>Save / quit / both</td></tr>
+        <tr><td><kbd>:o file</kbd></td><td>Open file</td></tr>
+        <tr><td><kbd>:bc</kbd></td><td>Close buffer</td></tr>
+        <tr><td><kbd>:sh cmd</kbd></td><td>Run shell command</td></tr>
+        <tr><td><kbd>:config-reload</kbd></td><td>Reload config</td></tr>
+        <tr><td><kbd>:theme name</kbd></td><td>Switch theme</td></tr>
+      </table>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

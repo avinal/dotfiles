@@ -1,0 +1,46 @@
+layout {
+    pane split_direction="vertical" {
+        pane {
+            command "hx"
+            args "."
+            focus true
+            size "60%"
+            name "Editor"
+        }
+        pane stacked=true {
+            pane {
+                name "Terminal"
+            }
+            pane {
+                name "LazyGit"
+                command "lazygit"
+            }
+        }
+    }
+    pane size=1 borderless=true {
+        plugin location="zellij:compact-bar"
+    }
+
+    swap_tiled_layout name="stacked" {
+        tab {
+            pane stacked=true {
+                pane {
+                    command "hx"
+                    args "."
+                    focus true
+                    name "Editor"
+                }
+                pane {
+                    name "Terminal"
+                }
+                pane {
+                    name "LazyGit"
+                    command "lazygit"
+                }
+            }
+            pane size=1 borderless=true {
+                plugin location="zellij:compact-bar"
+            }
+        }
+    }
+}
