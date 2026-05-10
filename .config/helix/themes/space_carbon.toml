@@ -28,6 +28,12 @@
 "ui.linenr" = { fg = "fg4" }
 "ui.linenr.selected" = { fg = "yellow", modifiers = ["bold"] }
 
+# ── UI: Diff Gutter ─────────────────────────────────────────────────
+
+"ui.gutter.diff.added" = { fg = "green" }
+"ui.gutter.diff.modified" = { fg = "blue" }
+"ui.gutter.diff.removed" = { fg = "red" }
+
 # ── UI: Statusline ───────────────────────────────────────────────────
 
 "ui.statusline" = { fg = "fg1", bg = "bg2" }
@@ -249,6 +255,10 @@
 "diff.delta" = { fg = "blue" }
 "diff.delta.moved" = { fg = "magenta" }
 "diff.delta.conflict" = { fg = "yellow" }
+
+# ── Rainbow Brackets ────────────────────────────────────────────────
+
+rainbow = ["yellow", "magenta", "cyan", "blue", "orange", "green", "pink"]
 
 # ── Palette ──────────────────────────────────────────────────────────
 

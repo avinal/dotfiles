@@ -17,7 +17,7 @@ export MANPATH="/usr/local/man:$MANPATH"
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_DEFAULT_OPTS=" \
   --height=40% --layout=reverse --border=rounded --cycle --scroll-off=4 \
-  --color=bg+:#393939,fg+:#ffffff,hl:#3a97d4,hl+:#3a97d4 \
+  --color=bg:#000000,fg:#c1c9d2,bg+:#393939,fg+:#ffffff,hl:#3a97d4,hl+:#3a97d4 \
   --color=info:#1ea672,prompt:#1ea672,pointer:#ed5f74,marker:#c96ed0 \
   --color=spinner:#d97917,header:#3a97d4,border:#393939 \
   --bind='ctrl-d:half-page-down,ctrl-u:half-page-up'"

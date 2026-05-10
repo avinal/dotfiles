@@ -23,6 +23,16 @@ gui:
       - "#ed5f74"
     defaultFgColor:
       - "#c1c9d2"
+    cherryPickedCommitBgColor:
+      - "#262626"
+    cherryPickedCommitFgColor:
+      - "#c96ed0"
+    searchingActiveBorderColor:
+      - "#d97917"
+    markedBaseCommitBgColor:
+      - "#161616"
+    markedBaseCommitFgColor:
+      - "#3a97d4"
 
 git:
   autoFetch: true

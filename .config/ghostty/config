@@ -21,11 +21,9 @@ resize-overlay = after-first
 resize-overlay-position = bottom-right
 
 # Cursor
-cursor-style = block_hollow
+cursor-style = block
 cursor-style-blink = false
 cursor-click-to-move = true
-cursor-color = cyan
-cursor-text = cyan
 
 # Shell
 shell-integration = zsh

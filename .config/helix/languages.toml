@@ -24,7 +24,7 @@ file-types = ["c", "h"]
 formatter = { command = 'clang-format' }
 auto-format = false
 language-servers = ["clangd", "wakatime"]
-indent = { tab-width = 4, unit = "    " }
+indent = { tab-width = 8, unit = "\t" }
 
 [[language]]
 name = "cpp"

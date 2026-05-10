@@ -11,16 +11,16 @@ bold_italic = { family = "Iosevka Term", style = "Bold Italic" }
 size = 14
 
 [colors.primary]
-background = "#111111"
+background = "#000000"
 foreground = "#c1c9d2"
 
 [colors.cursor]
-text = "#111111"
+text = "#000000"
 cursor = "#c1c9d2"
 
 [colors.selection]
 text = "#ffffff"
-background = "#3e4043"
+background = "#393939"
 
 [colors.normal]
 black = "#000000"
@@ -43,7 +43,7 @@ cyan = "#7fd3ed"
 white = "#ffffff"
 
 [cursor]
-style = { shape = "Underline", blinking = "On" }
+style = { shape = "Block", blinking = "Off" }
 
 [selection]
 save_to_clipboard = true

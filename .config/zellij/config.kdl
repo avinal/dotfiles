@@ -12,6 +12,10 @@ keybinds clear-defaults=true {
         bind "Alt 7" { GoToTab 7; }
         bind "Alt 8" { GoToTab 8; }
         bind "Alt 9" { GoToTab 9; }
+        bind "Alt h" { MoveFocus "left"; }
+        bind "Alt j" { MoveFocus "down"; }
+        bind "Alt k" { MoveFocus "up"; }
+        bind "Alt l" { MoveFocus "right"; }
     }
 
     tmux {
@@ -47,6 +51,7 @@ keybinds clear-defaults=true {
 
         bind "c" { NewTab; SwitchToMode "locked"; }
         bind "," { SwitchToMode "renametab"; TabNameInput 0; }
+        bind "." { SwitchToMode "renamepane"; PaneNameInput 0; }
         bind "X" { CloseTab; SwitchToMode "locked"; }
 
         bind "space" { NextSwapLayout; }
@@ -164,8 +169,8 @@ themes {
             emphasis_3 104 142 241
         }
         ribbon_unselected {
-            base 12 12 12
-            background 227 232 238
+            base 193 201 210
+            background 105 115 134
             emphasis_0 237 95 116
             emphasis_1 193 201 210
             emphasis_2 104 142 241
@@ -292,5 +297,5 @@ web_client {
     cursor_blink false
     cursor_style "block"
     cursor_inactive_style "outline"
-    font "Iosevka Fixed"
+    font "Iosevka Term"
 }

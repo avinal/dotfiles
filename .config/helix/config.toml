@@ -1,6 +1,7 @@
 theme = "space_carbon"
 
 [editor]
+rainbow-brackets = true
 rulers = [80, 100]
 mouse = true
 cursorline = true
@@ -8,15 +9,17 @@ continue-comments = true
 bufferline = "multiple"
 color-modes = true
 end-of-line-diagnostics = "hint"
-popup-border = "popup"
-scrolloff = 2
+popup-border = "all"
+scrolloff = 5
+text-width = 100
+trim-trailing-whitespace = true
 
 [editor.soft-wrap]
 enable = true
 
 [editor.lsp]
 display-messages = true
-#display-inlay-hints = true
+display-inlay-hints = true
 
 [editor.cursor-shape]
 insert = "underline"
@@ -26,9 +29,22 @@ select = "bar"
 hidden = false
 ignore = true
 
+[editor.search]
+smart-case = true
+wrap-around = true
+
+[editor.smart-tab]
+enable = true
+
+[editor.auto-save]
+focus-lost = true
 
 [editor.whitespace]
-render = "none"
+render = "all"
+[editor.whitespace.characters]
+tab = ">"
+space = " "
+newline = " "
 
 [editor.indent-guides]
 render = true
