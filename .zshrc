@@ -25,11 +25,8 @@ export FZF_CTRL_T_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :200 {}' --preview-window=right:50%:wrap"
 export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
 export FZF_ALT_C_OPTS="--preview 'ls --color=always {}'"
-
-# Claude Code
-export CLAUDE_CODE_USE_VERTEX=1
-export CLOUD_ML_REGION=us-east5
-export ANTHROPIC_VERTEX_PROJECT_ID=$GCP_PRODUCT_ID
+# Secrets live outside the repo (chmod 600)
+[ -f "$HOME/.config/secrets.env" ] && . "$HOME/.config/secrets.env"
 
 # === Zinit ===
 ZINIT_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zinit/zinit.git"
@@ -63,13 +60,12 @@ zinit ice as"completion"
 zinit snippet OMZP::docker/completions/_docker
 
 # Wakatime (separate repo, not a standard OMZ plugin)
-zinit light sobolevn/wakatime-zsh-plugin
+# zinit light sobolevn/wakatime-zsh-plugin
 
 # === Completions ===
 autoload -Uz compinit && compinit
 zinit cdreplay -q
 
-CASE_SENSITIVE="true"
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
@@ -83,9 +79,19 @@ zstyle ':fzf-tab:*' switch-group '<' '>'
 # === Tool Initialization ===
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
+# Lazy-load nvm: only pay the startup cost on first node/npm/nvm call
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+  _nvm_load() {
+    unset -f node npm npx nvm 2>/dev/null
+    . "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+  }
+  node() { _nvm_load; node "$@"; }
+  npm()  { _nvm_load; npm "$@"; }
+  npx()  { _nvm_load; npx "$@"; }
+  nvm()  { _nvm_load; nvm "$@"; }
+fi
 
 # Atuin env (adds ~/.atuin/bin to PATH)
 [ -f "$HOME/.atuin/bin/env" ] && . "$HOME/.atuin/bin/env"
@@ -124,5 +130,15 @@ zwork() {
   zellij action new-tab --layout "$layout" --name "${tab_name:-${project%/}}" --cwd "$PWD/$project"
 }
 
+# Pick an AI CLI (used by the zellij ide layout)
+ai() {
+  local pick
+  pick=$(printf '%s\n' claude codex opencode \
+    | fzf --prompt="AI > " --height=100% --reverse --no-info)
+  [ -z "$pick" ] && return 0
+  exec "$pick"
+}
+
 # === Aliases ===
 alias work-git='git config user.email "avinal@redhat.com"'
+alias lg='lazygit'
