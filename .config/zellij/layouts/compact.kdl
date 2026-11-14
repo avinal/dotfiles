@@ -1,0 +1,38 @@
+// Editor + terminal: vertical 60:40, horizontal 70:30
+layout {
+    pane split_direction="vertical" {
+        pane {
+            command "hx"
+            args "."
+            focus true
+            size "60%"
+            name "Editor"
+        }
+        pane {
+            name "Terminal"
+        }
+    }
+    pane size=1 borderless=true {
+        plugin location="zellij:compact-bar"
+    }
+
+    swap_tiled_layout name="horizontal" {
+        tab {
+            pane split_direction="horizontal" {
+                pane {
+                    command "hx"
+                    args "."
+                    focus true
+                    size "70%"
+                    name "Editor"
+                }
+                pane {
+                    name "Terminal"
+                }
+            }
+            pane size=1 borderless=true {
+                plugin location="zellij:compact-bar"
+            }
+        }
+    }
+}
