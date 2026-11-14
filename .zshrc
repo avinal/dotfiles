@@ -59,8 +59,8 @@ zinit snippet OMZP::golang
 zinit ice as"completion"
 zinit snippet OMZP::docker/completions/_docker
 
-# Wakatime (separate repo, not a standard OMZ plugin)
-# zinit light sobolevn/wakatime-zsh-plugin
+# Wakatime: tracks terminal time, uses wakatime-cli from PATH
+zinit light sobolevn/wakatime-zsh-plugin
 
 # === Completions ===
 autoload -Uz compinit && compinit
@@ -132,10 +132,68 @@ zwork() {
 
 # Pick an AI CLI (used by the zellij ide layout)
 ai() {
-  local pick
-  pick=$(printf '%s\n' claude codex opencode \
-    | fzf --prompt="AI > " --height=100% --reverse --no-info)
-  [ -z "$pick" ] && return 0
+  local -a ais=(claude codex opencode)
+  local cache="${XDG_CACHE_HOME:-$HOME/.cache}/ai-last"
+  local last="" c desc pick="" rc=1
+
+  [[ -r "$cache" ]] && last="$(<"$cache")"
+
+  # Most-recently-used first, so plain Enter relaunches it
+  local -a ordered=()
+  [[ -n "$last" && " ${ais[*]} " == *" $last "* ]] && ordered+=("$last")
+  for c in "${ais[@]}"; do
+    [[ "$c" == "$last" ]] || ordered+=("$c")
+  done
+
+  # Candidate list: name<TAB>description[ (not installed)]
+  local listfile
+  listfile="$(mktemp "${TMPDIR:-/tmp}/ai-pick.XXXXXX")"
+  for c in "${ordered[@]}"; do
+    case "$c" in
+      claude)   desc="Anthropic Claude Code" ;;
+      codex)    desc="OpenAI Codex CLI" ;;
+      opencode) desc="opencode" ;;
+      *)        desc="" ;;
+    esac
+    command -v "$c" >/dev/null 2>&1 || desc="$desc (not installed)"
+    printf '%s\t%s\n' "$c" "$desc" >> "$listfile"
+  done
+
+  # fzf needs /dev/tty for its UI; zellij command panes may not have one.
+  # When stdin is a tty, fzf takes candidates from FZF_DEFAULT_COMMAND.
+  # stdout must go to a file: command substitution breaks fzf's tty handling.
+  if command -v fzf >/dev/null 2>&1 && { true < /dev/tty; } 2>/dev/null; then
+    local outfile
+    outfile="$(mktemp "${TMPDIR:-/tmp}/ai-pick-out.XXXXXX")"
+    FZF_DEFAULT_COMMAND="cat '$listfile'" fzf \
+      --delimiter=$'\t' --with-nth=1,2 \
+      --prompt="AI > " \
+      --header="enter: launch  ·  esc: cancel" \
+      --preview='c=$(echo {} | cut -f1); if command -v "$c" >/dev/null 2>&1; then command -v "$c"; "$c" --version 2>&1 | head -1; else echo "not installed"; fi' \
+      --preview-window='down,3,wrap' \
+      --height=100% --reverse --no-info > "$outfile" < /dev/tty 2>/dev/null
+    rc=$?
+    pick="$(<"$outfile")"
+    rm -f "$outfile"
+  fi
+
+  rm -f "$listfile"
+
+  [ "$rc" -eq 130 ] && return 0
+
+  # Fallback: numbered menu, works even without /dev/tty
+  if [[ -z "$pick" ]]; then
+    print -r -- "AI:"
+    select pick in "${ordered[@]}"; do break; done
+  else
+    pick="${pick%%$'\t'*}"
+  fi
+
+  [[ -n "$pick" ]] || return 0
+
+  mkdir -p "${cache:h}" 2>/dev/null
+  print -r -- "$pick" > "$cache" 2>/dev/null
+
   exec "$pick"
 }
 
