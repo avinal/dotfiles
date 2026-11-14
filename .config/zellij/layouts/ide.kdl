@@ -15,10 +15,47 @@ layout {
                 name "LazyGit"
                 command "lazygit"
             }
+            pane {
+                name "AI"
+                command "zsh"
+                args "-ic" "ai; exec zsh"
+            }
         }
     }
     pane size=1 borderless=true {
         plugin location="zellij:compact-bar"
+    }
+
+    swap_tiled_layout name="split-stacks" {
+        tab {
+            pane split_direction="vertical" {
+                pane stacked=true size="60%" {
+                    pane {
+                        command "hx"
+                        args "."
+                        focus true
+                        name "Editor"
+                    }
+                    pane {
+                        name "LazyGit"
+                        command "lazygit"
+                    }
+                }
+                pane stacked=true {
+                    pane {
+                        name "AI"
+                        command "zsh"
+                        args "-ic" "ai; exec zsh"
+                    }
+                    pane {
+                        name "Terminal"
+                    }
+                }
+            }
+            pane size=1 borderless=true {
+                plugin location="zellij:compact-bar"
+            }
+        }
     }
 
     swap_tiled_layout name="stacked" {
@@ -36,6 +73,11 @@ layout {
                 pane {
                     name "LazyGit"
                     command "lazygit"
+                }
+                pane {
+                    name "AI"
+                    command "zsh"
+                    args "-ic" "ai; exec zsh"
                 }
             }
             pane size=1 borderless=true {

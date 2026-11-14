@@ -54,7 +54,21 @@ keybinds clear-defaults=true {
         bind "." { SwitchToMode "renamepane"; PaneNameInput 0; }
         bind "X" { CloseTab; SwitchToMode "locked"; }
 
+        // stay in tmux mode so space can cycle through swap layouts
         bind "space" { NextSwapLayout; }
+
+        // Named swap layouts from ide.kdl
+        bind "S" { ApplyTiledSwapLayout "stacked"; SwitchToMode "locked"; }
+        bind "D" { ApplyTiledSwapLayout "split-stacks"; SwitchToMode "locked"; }
+
+        // Jump back to the previously focused pane
+        bind ";" { FocusLastPane; SwitchToMode "locked"; }
+
+        // Reclaim the compact-bar line
+        bind "B" { ToggleBars "compact-bar"; SwitchToMode "locked"; }
+
+        // Copy output of the last finished command (needs OSC 133 from the shell)
+        bind "y" { CopyLastCommandOutput; SwitchToMode "locked"; }
 
         // Spotlight-style fuzzy tab/session picker
         bind "w" {
@@ -107,6 +121,8 @@ keybinds clear-defaults=true {
         bind "d" "PageDown" { PageScrollDown; }
         bind "u" "PageUp" { PageScrollUp; }
         bind "e" { EditScrollback; SwitchToMode "locked"; }
+        bind "[" { ScrollToPreviousPrompt; }
+        bind "]" { ScrollToNextPrompt; }
         bind "/" { SwitchToMode "entersearch"; SearchInput 0; }
         bind "Ctrl a" { SwitchToMode "tmux"; }
         bind "esc" { SwitchToMode "locked"; }
@@ -142,124 +158,12 @@ keybinds clear-defaults=true {
     }
 }
 
-themes {
-    space_carbon {
-        text_unselected {
-            base 193 201 210
-            background 57 57 57
-            emphasis_0 237 95 116
-            emphasis_1 58 151 212
-            emphasis_2 30 166 114
-            emphasis_3 201 110 208
-        }
-        text_selected {
-            base 255 255 255
-            background 57 57 57
-            emphasis_0 237 95 116
-            emphasis_1 58 151 212
-            emphasis_2 30 166 114
-            emphasis_3 201 110 208
-        }
-        ribbon_selected {
-            base 12 12 12
-            background 30 166 114
-            emphasis_0 237 95 116
-            emphasis_1 217 121 23
-            emphasis_2 201 110 208
-            emphasis_3 104 142 241
-        }
-        ribbon_unselected {
-            base 193 201 210
-            background 105 115 134
-            emphasis_0 237 95 116
-            emphasis_1 193 201 210
-            emphasis_2 104 142 241
-            emphasis_3 201 110 208
-        }
-        table_title {
-            base 30 166 114
-            background 0
-            emphasis_0 237 95 116
-            emphasis_1 58 151 212
-            emphasis_2 30 166 114
-            emphasis_3 201 110 208
-        }
-        table_cell_selected {
-            base 255 255 255
-            background 57 57 57
-            emphasis_0 237 95 116
-            emphasis_1 58 151 212
-            emphasis_2 30 166 114
-            emphasis_3 201 110 208
-        }
-        table_cell_unselected {
-            base 193 201 210
-            background 57 57 57
-            emphasis_0 237 95 116
-            emphasis_1 58 151 212
-            emphasis_2 30 166 114
-            emphasis_3 201 110 208
-        }
-        list_selected {
-            base 255 255 255
-            background 57 57 57
-            emphasis_0 237 95 116
-            emphasis_1 58 151 212
-            emphasis_2 30 166 114
-            emphasis_3 201 110 208
-        }
-        list_unselected {
-            base 193 201 210
-            background 57 57 57
-            emphasis_0 237 95 116
-            emphasis_1 58 151 212
-            emphasis_2 30 166 114
-            emphasis_3 201 110 208
-        }
-        frame_selected {
-            base 30 166 114
-            background 0
-            emphasis_0 237 95 116
-            emphasis_1 58 151 212
-            emphasis_2 201 110 208
-            emphasis_3 0
-        }
-        frame_highlight {
-            base 217 121 23
-            background 0
-            emphasis_0 217 121 23
-            emphasis_1 217 121 23
-            emphasis_2 217 121 23
-            emphasis_3 217 121 23
-        }
-        exit_code_success {
-            base 30 166 114
-            background 0
-            emphasis_0 58 151 212
-            emphasis_1 57 57 57
-            emphasis_2 201 110 208
-            emphasis_3 104 142 241
-        }
-        exit_code_error {
-            base 237 95 116
-            background 0
-            emphasis_0 217 121 23
-            emphasis_1 0
-            emphasis_2 0
-            emphasis_3 0
-        }
-        multiplayer_user_colors {
-            player_1 201 110 208
-            player_2 104 142 241
-            player_3 0
-            player_4 217 121 23
-            player_5 58 151 212
-            player_6 0
-            player_7 237 95 116
-            player_8 0
-            player_9 0
-            player_10 0
-        }
+
+context_menu {
+    pane {
+        item "Copy last command output" { CopyLastCommandOutput; }
+        item "Watch pane" toggled_label="Stop watching" { WatchPaneByPaneId; }
+        item "Fullscreen" toggled_label="Exit fullscreen" { ToggleFocusFullscreenByPaneId; }
     }
 }
 
@@ -279,8 +183,9 @@ plugins {
 }
 
 default_mode "locked"
+default_shell "zsh"
 pane_frames false
-theme "space_carbon"
+theme "carbon_dracula"
 default_layout "terminal"
 scroll_buffer_size 100000
 copy_on_select true
@@ -299,3 +204,12 @@ web_client {
     cursor_inactive_style "outline"
     font "Iosevka Term"
 }
+simplified_ui true
+terminal {
+    font "Iosevka Fixed"
+    font_size 14
+    cursor_blink true
+    padding_balance true
+}
+on_quit "ask_detach"
+stacked_pane_list_orientation "vertical"

@@ -1,0 +1,146 @@
+themes {
+    carbon_dracula {
+        text_unselected {
+            base 193 201 210
+            background 0 0 0
+            emphasis_0 255 85 85
+            emphasis_1 139 233 253
+            emphasis_2 30 166 114
+            emphasis_3 255 121 198
+        }
+        text_selected {
+            base 255 255 255
+            background 68 71 90
+            emphasis_0 255 85 85
+            emphasis_1 139 233 253
+            emphasis_2 30 166 114
+            emphasis_3 255 121 198
+        }
+        ribbon_selected {
+            base 30 166 114
+            background 0
+            emphasis_0 255 85 85
+            emphasis_1 241 250 140
+            emphasis_2 255 121 198
+            emphasis_3 189 147 249
+        }
+        ribbon_unselected {
+            base 98 114 164
+            background 0
+            emphasis_0 255 85 85
+            emphasis_1 193 201 210
+            emphasis_2 189 147 249
+            emphasis_3 255 121 198
+        }
+        ribbon_hover {
+            base 98 114 164
+            background 0
+            emphasis_0 255 85 85
+            emphasis_1 139 233 253
+            emphasis_2 30 166 114
+            emphasis_3 255 121 198
+        }
+        table_title {
+            base 30 166 114
+            background 0
+            emphasis_0 255 85 85
+            emphasis_1 139 233 253
+            emphasis_2 30 166 114
+            emphasis_3 255 121 198
+        }
+        table_cell_selected {
+            base 255 255 255
+            background 68 71 90
+            emphasis_0 255 85 85
+            emphasis_1 139 233 253
+            emphasis_2 30 166 114
+            emphasis_3 255 121 198
+        }
+        table_cell_unselected {
+            base 193 201 210
+            background 0 0 0
+            emphasis_0 255 85 85
+            emphasis_1 139 233 253
+            emphasis_2 30 166 114
+            emphasis_3 255 121 198
+        }
+        list_selected {
+            base 255 255 255
+            background 68 71 90
+            emphasis_0 255 85 85
+            emphasis_1 139 233 253
+            emphasis_2 30 166 114
+            emphasis_3 255 121 198
+        }
+        list_unselected {
+            base 193 201 210
+            background 0 0 0
+            emphasis_0 255 85 85
+            emphasis_1 139 233 253
+            emphasis_2 30 166 114
+            emphasis_3 255 121 198
+        }
+        frame_selected {
+            base 30 166 114
+            background 0
+            emphasis_0 255 85 85
+            emphasis_1 139 233 253
+            emphasis_2 255 121 198
+            emphasis_3 0
+        }
+        frame_highlight {
+            base 241 250 140
+            background 0
+            emphasis_0 241 250 140
+            emphasis_1 241 250 140
+            emphasis_2 241 250 140
+            emphasis_3 241 250 140
+        }
+        exit_code_success {
+            base 30 166 114
+            background 0
+            emphasis_0 139 233 253
+            emphasis_1 0 0 0
+            emphasis_2 255 121 198
+            emphasis_3 189 147 249
+        }
+        exit_code_error {
+            base 255 85 85
+            background 0
+            emphasis_0 241 250 140
+            emphasis_1 0
+            emphasis_2 0
+            emphasis_3 0
+        }
+        multiplayer_user_colors {
+            player_1 255 121 198
+            player_2 189 147 249
+            player_3 0
+            player_4 241 250 140
+            player_5 139 233 253
+            player_6 0
+            player_7 255 85 85
+            player_8 0
+            player_9 0
+            player_10 0
+        }
+        terminal_colors {
+            black 0 0 0
+            red 255 85 85
+            green 30 166 114
+            yellow 241 250 140
+            blue 189 147 249
+            magenta 255 121 198
+            cyan 139 233 253
+            white 248 248 242
+            bright_black 98 114 164
+            bright_red 255 110 110
+            bright_green 133 217 150
+            bright_yellow 255 255 165
+            bright_blue 214 172 255
+            bright_magenta 255 146 223
+            bright_cyan 164 255 255
+            bright_white 255 255 255
+        }
+    }
+}
