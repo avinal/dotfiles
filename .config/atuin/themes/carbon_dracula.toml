@@ -1,0 +1,19 @@
+[theme]
+name = "carbon_dracula"
+
+[colors]
+Base = "#c1c9d2"
+Muted = "#6272a4"
+Title = "#8be9fd"
+Important = "#ff79c6"
+Guidance = "#bd93f9"
+Annotation = "#6272a4"
+AlertInfo = "#1ea672"
+AlertWarn = "#f1fa8c"
+AlertError = "#ff5555"
+SyntaxCommand = "#1ea672"
+SyntaxFlag = "#ffb86c"
+SyntaxString = "#f1fa8c"
+SyntaxVariable = "#ff79c6"
+SyntaxOperator = "#8be9fd"
+SyntaxComment = "#6272a4"

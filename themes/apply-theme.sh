@@ -29,6 +29,11 @@ rgb() {
     printf "%d %d %d" "0x${hex:0:2}" "0x${hex:2:2}" "0x${hex:4:2}"
 }
 
+# "0" means the terminal background in Zellij themes; pass it through
+kdl_rgb() {
+    [[ "$1" == "0" ]] && echo 0 || rgb "$1"
+}
+
 echo "Applying theme: $THEME_NAME"
 echo "================================"
 
@@ -118,7 +123,7 @@ cyan = "$BRIGHT_CYAN"
 white = "$BRIGHT_WHITE"
 
 [cursor]
-style = { shape = "Underline", blinking = "On" }
+style = { shape = "Block", blinking = "Off" }
 
 [selection]
 save_to_clipboard = true
@@ -141,13 +146,23 @@ new_theme = '''  theme:
     inactiveBorderColor:
       - \"$MUTED\"
     selectedLineBgColor:
-      - \"$SURFACE\"
+      - \"$SELECTION_BG\"
     optionsTextColor:
       - \"$CYAN\"
     unstagedChangesColor:
       - \"$RED\"
     defaultFgColor:
-      - \"$FG\"'''
+      - \"$FG\"
+    cherryPickedCommitBgColor:
+      - \"$BG3\"
+    cherryPickedCommitFgColor:
+      - \"$MAGENTA\"
+    searchingActiveBorderColor:
+      - \"$ORANGE\"
+    markedBaseCommitBgColor:
+      - \"$BG2\"
+    markedBaseCommitFgColor:
+      - \"$CYAN\"'''
 
 config = re.sub(
     r'  theme:.*?(?=\n\w|\ngit:|\ncustomCommands:|\nos:)',
@@ -162,7 +177,9 @@ fi
 
 # --- Zellij ---
 ZELLIJ="$DOTFILES_DIR/.config/zellij/config.kdl"
+ZELLIJ_THEME="$DOTFILES_DIR/.config/zellij/themes/$THEME_NAME.kdl"
 if [[ -f "$ZELLIJ" ]]; then
+    mkdir -p "$(dirname "$ZELLIJ_THEME")"
     python3 -c "
 import re
 
@@ -187,19 +204,27 @@ new_theme = '''themes {
             emphasis_3 $(rgb "$MAGENTA")
         }
         ribbon_selected {
-            base $(rgb "$BG")
-            background $(rgb "$GREEN")
+            base $(rgb "${RIBBON_SELECTED_FG:-$BG}")
+            background $(kdl_rgb "${RIBBON_SELECTED_BG:-$GREEN}")
             emphasis_0 $(rgb "$RED")
             emphasis_1 $(rgb "$YELLOW")
             emphasis_2 $(rgb "$MAGENTA")
             emphasis_3 $(rgb "$BLUE")
         }
         ribbon_unselected {
-            base $(rgb "$BG")
-            background $(rgb "$WHITE")
+            base $(rgb "${RIBBON_UNSELECTED_FG:-$BG}")
+            background $(kdl_rgb "${RIBBON_BG:-$WHITE}")
             emphasis_0 $(rgb "$RED")
             emphasis_1 $(rgb "$FG")
             emphasis_2 $(rgb "$BLUE")
+            emphasis_3 $(rgb "$MAGENTA")
+        }
+        ribbon_hover {
+            base $(rgb "${RIBBON_HOVER_FG:-$FG}")
+            background $(kdl_rgb "${RIBBON_HOVER_BG:-$RIBBON_BG}")
+            emphasis_0 $(rgb "$RED")
+            emphasis_1 $(rgb "$CYAN")
+            emphasis_2 $(rgb "$GREEN")
             emphasis_3 $(rgb "$MAGENTA")
         }
         table_title {
@@ -286,15 +311,72 @@ new_theme = '''themes {
             player_9 0
             player_10 0
         }
+        terminal_colors {
+            black $(rgb "$BLACK")
+            red $(rgb "$RED")
+            green $(rgb "$GREEN")
+            yellow $(rgb "$YELLOW")
+            blue $(rgb "$BLUE")
+            magenta $(rgb "$MAGENTA")
+            cyan $(rgb "$CYAN")
+            white $(rgb "$WHITE")
+            bright_black $(rgb "$BRIGHT_BLACK")
+            bright_red $(rgb "$BRIGHT_RED")
+            bright_green $(rgb "$BRIGHT_GREEN")
+            bright_yellow $(rgb "$BRIGHT_YELLOW")
+            bright_blue $(rgb "$BRIGHT_BLUE")
+            bright_magenta $(rgb "$BRIGHT_MAGENTA")
+            bright_cyan $(rgb "$BRIGHT_CYAN")
+            bright_white $(rgb "$BRIGHT_WHITE")
+        }
     }
 }'''
 
-config = re.sub(r'themes \{.*?\n\}', new_theme, config, flags=re.DOTALL)
+config = re.sub(r'\nthemes \{.*?\n\}\n', '\n', config, flags=re.DOTALL)
 config = re.sub(r'theme \".*?\"', 'theme \"$THEME_NAME\"', config)
 open('$ZELLIJ', 'w').write(config)
+open('$ZELLIJ_THEME', 'w').write(new_theme)
 "
-    echo "[ok] Zellij theme: $THEME_NAME"
+    echo "[ok] Zellij theme: $THEME_NAME -> $ZELLIJ_THEME"
 fi
+
+# --- Atuin ---
+ATUIN_DIR="$DOTFILES_DIR/.config/atuin"
+mkdir -p "$ATUIN_DIR/themes"
+cat > "$ATUIN_DIR/themes/$THEME_NAME.toml" << EOF
+[theme]
+name = "$THEME_NAME"
+
+[colors]
+Base = "$FG"
+Muted = "$MUTED"
+Title = "$CYAN"
+Important = "$MAGENTA"
+Guidance = "$BLUE"
+Annotation = "$MUTED"
+AlertInfo = "$GREEN"
+AlertWarn = "$YELLOW"
+AlertError = "$RED"
+SyntaxCommand = "$GREEN"
+SyntaxFlag = "$ORANGE"
+SyntaxString = "$YELLOW"
+SyntaxVariable = "$MAGENTA"
+SyntaxOperator = "$CYAN"
+SyntaxComment = "$MUTED"
+EOF
+python3 - "$ATUIN_DIR/config.toml" "$THEME_NAME" <<'PY'
+import re, sys
+
+path, name = sys.argv[1], sys.argv[2]
+s = open(path).read()
+block = f'[theme]\nname = "{name}"\n'
+if re.search(r'^\[theme\]', s, flags=re.M):
+    s = re.sub(r'^\[theme\]\n(?:.*\n)*?(?=\n\[|\Z)', block + '\n', s, flags=re.M)
+else:
+    s = s.rstrip() + '\n\n' + block
+open(path, 'w').write(s)
+PY
+echo "[ok] Atuin theme: $THEME_NAME"
 
 echo "================================"
 echo "Done! Restart your tools to see changes."

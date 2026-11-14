@@ -19,27 +19,27 @@ text = "#000000"
 cursor = "#c1c9d2"
 
 [colors.selection]
-text = "#ffffff"
-background = "#393939"
+text = "#f8f8f2"
+background = "#44475a"
 
 [colors.normal]
 black = "#000000"
-red = "#ed5f74"
+red = "#ff5555"
 green = "#1ea672"
-yellow = "#d97917"
-blue = "#688ef1"
-magenta = "#c96ed0"
-cyan = "#3a97d4"
-white = "#e3e8ee"
+yellow = "#f1fa8c"
+blue = "#bd93f9"
+magenta = "#ff79c6"
+cyan = "#8be9fd"
+white = "#f8f8f2"
 
 [colors.bright]
-black = "#697386"
-red = "#fbb5b2"
+black = "#6272a4"
+red = "#ff6e6e"
 green = "#85d996"
-yellow = "#efc078"
-blue = "#9fcdff"
-magenta = "#f0b4e4"
-cyan = "#7fd3ed"
+yellow = "#ffffa5"
+blue = "#d6acff"
+magenta = "#ff92df"
+cyan = "#a4ffff"
 white = "#ffffff"
 
 [cursor]
