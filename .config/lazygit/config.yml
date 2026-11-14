@@ -11,31 +11,31 @@ gui:
   animateExplosion: false
   theme:
     activeBorderColor:
-      - "#3a97d4"
+      - "#8be9fd"
       - bold
     inactiveBorderColor:
-      - "#697386"
+      - "#6272a4"
     selectedLineBgColor:
-      - "#393939"
+      - "#44475a"
     optionsTextColor:
-      - "#3a97d4"
+      - "#8be9fd"
     unstagedChangesColor:
-      - "#ed5f74"
+      - "#ff5555"
     defaultFgColor:
       - "#c1c9d2"
     cherryPickedCommitBgColor:
-      - "#262626"
+      - "#21222c"
     cherryPickedCommitFgColor:
-      - "#c96ed0"
+      - "#ff79c6"
     searchingActiveBorderColor:
-      - "#d97917"
+      - "#ffb86c"
     markedBaseCommitBgColor:
       - "#161616"
     markedBaseCommitFgColor:
-      - "#3a97d4"
+      - "#8be9fd"
 
 git:
-  autoFetch: true
+  autoFetch: false
   autoRefresh: true
   branchLogCmd: git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --
 os:
