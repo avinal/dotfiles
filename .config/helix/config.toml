@@ -1,8 +1,9 @@
-theme = "space_carbon"
+theme = "carbon_dracula"
 
 [editor]
 rainbow-brackets = true
 rulers = [80, 100]
+gutters = ["diagnostics", "spacer", "line-numbers", "spacer", "diff", "code-action-hint"]
 mouse = true
 cursorline = true
 continue-comments = true
@@ -19,7 +20,17 @@ enable = true
 
 [editor.lsp]
 display-messages = true
+display-progress-messages = true
 display-inlay-hints = true
+auto-document-highlight = true
+
+[editor.file-explorer]
+git-ignore = true
+git-global = true
+flatten-dirs = true
+
+[editor.buffer-picker]
+start-position = "previous"
 
 [editor.cursor-shape]
 insert = "underline"
@@ -54,6 +65,6 @@ cursor-line = "error"
 other-lines = "warning"
 
 [editor.statusline]
-left = ["mode", "spacer", "version-control", "spacer", "file-name", "read-only-indicator"]
-center = ["diagnostics", "spinner", "file-modification-indicator"]
+left = ["mode", "spacer", "version-control", "spacer", "file-name", "file-indent-style", "read-only-indicator"]
+center = ["diagnostics", "spinner", "code-action-hint", "file-modification-indicator"]
 right = ["primary-selection-length", "selections", "register", "position", "separator", "total-line-numbers"]

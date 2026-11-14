@@ -7,7 +7,7 @@ config = { harper-ls = { diagnosticSeverity = "error", linters = { long_sentence
 command = "wakatime-ls"
 
 [language-server.yaml-language-server.config.yaml]
-format = { enable = true }
+# format = { enable = true }
 validation = true
 schemaStore = { enable = true }
 
@@ -20,30 +20,33 @@ schemaStore = { enable = true }
 
 [[language]]
 name = "c"
-file-types = ["c", "h"]
 formatter = { command = 'clang-format' }
 auto-format = false
 language-servers = ["clangd", "wakatime"]
+# GNU style: hard tabs, 8-column stops; .editorconfig still wins per-project
 indent = { tab-width = 8, unit = "\t" }
 
 [[language]]
 name = "cpp"
-file-types = ["cpp", "cc", "cxx", "hpp", "hcc", "hxx"]
 formatter = { command = 'clang-format' }
 language-servers = ["clangd", "wakatime"]
 auto-format = false
-indent = { tab-width = 4, unit = "    " }
+indent = { tab-width = 8, unit = "\t" }
 
 [[language]]
 name = "markdown"
-file-types = ["md", "rst", "adoc"]
 language-servers = ["marksman", "wakatime", "harper-ls"]
+
+[language-server.gopls]
+command = "gopls"
+environment = { "GOTOOLCHAIN" = "auto" }
 
 [[language]]
 name = "go"
 language-servers = ["gopls", "wakatime"]
-formatter = { command = 'goimports' }
+# no external formatter: gopls (LSP) formats on save
 auto-format = true
+code-actions-on-save = ["source.organizeImports"]
 
 [[language]]
 name = "yaml"
@@ -62,6 +65,7 @@ auto-format = true
 name = "rust"
 language-servers = ["rust-analyzer", "wakatime"]
 auto-format = true
+code-actions-on-save = ["source.organizeImports"]
 
 [[language]]
 name = "typescript"
@@ -82,6 +86,10 @@ name = "css"
 language-servers = ["vscode-css-language-server", "wakatime"]
 
 [[language]]
+name = "elm"
+language-servers = ["elm-language-server", "wakatime"]
+
+[[language]]
 name = "lua"
 language-servers = ["lua-language-server", "wakatime"]
 
@@ -92,7 +100,9 @@ language-servers = ["docker-langserver", "wakatime"]
 [[language]]
 name = "json"
 language-servers = ["vscode-json-language-server", "wakatime"]
+auto-format = true
 
 [[language]]
 name = "toml"
 language-servers = ["taplo", "wakatime"]
+auto-format = true
