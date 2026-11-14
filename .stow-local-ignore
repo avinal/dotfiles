@@ -24,9 +24,11 @@ _darcs
 
 # Ignore non-config items
 archive
-themes
+^/themes
 .wakatime.cfg
 logid
 bootstrap
 themetest.md
 pikvm
+cheatsheet.html
+\.local
