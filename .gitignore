@@ -6,3 +6,5 @@
 .wakatime.cfg
 .config/gh/hosts.yml
 pikvm/vnc
+.config/helix/runtime
+.config/atuin/atuin-receipt.json
